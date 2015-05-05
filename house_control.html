@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
+<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+  
+<script type="text/javascript" type="text/javascript">
+  var ros = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+  });
+
+  var gotoClient = new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/z_wave/PowerSwAction',
+    actionName : 'z_wave/PowerSwAction'
+  });
+
+  function switch_actor(actor, state) {
+    console.log('Switching: ' + actor + ' ' + state);
+    var goal = new ROSLIB.Goal({
+      actionClient : gotoClient,
+      goalMessage : {
+        switchname : actor,
+        switchstate : state
+      }
+    });
+
+    goal.on('result', function(result) {
+      console.log('finished');
+    });
+
+    goal.send();
+  }
+
+  ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+  });
+
+  ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+  });
+
+  ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+  });
+
+</script>
+  <title>Marvin Web UI Prototype</title>
+  <style type="text/css">
+   .btn-xlarge {
+    padding: 48px 68px;
+    font-size: 62px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 18px;
+       -moz-border-radius: 18px;
+            border-radius: 18px;
+  }
+  </style>
+ </head>
+ <body>
+  <div class="container-fluid">
+   <div class="row-fluid">
+    <div class="span12">
+     <div class="row-fluid">
+      <button class="btn btn-default btn-xlarge" role="submit" onclick="switch_actor('Switch_2', 'ON')">Licht an</a>
+      <button class="btn btn-default btn-xlarge" role="submit" onclick="switch_actor('Switch_2', 'OFF')">Licht aus</a>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
