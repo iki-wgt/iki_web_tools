@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 
-<script src="http://cdn.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
+<script src="http://cdn.robotwebtools.org/EaselJS/current/easeljs.js"></script>
 <script src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 <script src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
 <script src="http://cdn.robotwebtools.org/ros2djs/current/ros2d.js"></script>
@@ -18,18 +18,37 @@
     var ros = new ROSLIB.Ros({
       url : 'ws://192.168.5.2:9090'
     });
+
     // Create the main viewer.
     var viewer = new ROS2D.Viewer({
-      divID : 'nav',
-      width : 350,
-      height : 400
+      divID : 'map',
+      width : 992,
+      height : 544
     });
-    // Setup the nav client.
-    var nav = NAV2D.OccupancyGridClientNav({
+
+    // Setup the map client.
+    var gridClient = new NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
       viewer : viewer,
-      serverName : '/move_base'
+      withOrientation : true
+    });
+    // Scale the canvas to fit to the map
+    /*gridClient.on('change', function() {
+      viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+      viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
+    });*/
+
+    ros.on('connection', function() {
+      console.log('Connected to websocket server.');
+    });
+
+    ros.on('error', function(error) {
+      console.log('Error connecting to websocket server: ', error);
+    });
+
+    ros.on('close', function() {
+      console.log('Connection to websocket server closed.');
     });
   }
 </script>
@@ -37,22 +56,17 @@
 
 <body onload="init()">
   <h1>Simple Map Example</h1>
-  <p>Run the following commands in the terminal then refresh this page.</p>
+  <p>
+    Run the following commands in the terminal then refresh this page. This will load a map from the
+    <tt>ros-groovy-rail-maps</tt>
+    package.
+  </p>
   <ol>
-    <li><tt>roslaunch pr2_gazebo pr2_empty_world.launch</tt>
-    </li>
-    <li>Place the Willow Garage model over the robot by selecting <tt>Willow Garage</tt> from
-      the models list in the <tt>Insert</tt> tab.</li>
-    <li><tt>rosrun map_server map_server
-        /opt/ros/groovy/stacks/wg_common/willow_maps/willow-sans-whitelab-2010-02-18-0.025.pgm 0.025</tt>
-    </li>
-    <li><tt>export ROBOT=sim</tt></li>
-    <li><tt>roslaunch pr2_2dnav pr2_2dnav.launch</tt></li>
-    <li><tt>roslaunch pr2_tuckarm tuck_arms.launch</tt></li>
-    <li><tt>rosrun robot_pose_publisher robot_pose_publisher</tt></li>
-    <li><tt>roslaunch rosbridge_server rosbridge_websocket.launch</tt>
-    </li>
+    <li><tt>roscore</tt></li>
+    <li><tt>rosrun map_server map_server /opt/ros/groovy/share/rail_maps/maps/ilab.pgm
+        0.05</tt></li>
+    <li><tt>roslaunch rosbridge_server rosbridge_websocket.launch</tt></li>
   </ol>
-  <div id="nav"></div>
+  <div id="map"></div>
 </body>
 </html>
