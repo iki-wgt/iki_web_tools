@@ -17,6 +17,19 @@
 		<link rel="stylesheet" type="text/css" href="css/custom.css" />
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
+		
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/three.js"></script>
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/ColladaLoader.js"></script>
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/STLLoader.js"></script>
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/ros3djs/current/ros3d.js"></script>
+
+		<script type="text/javascript" type="text/javascript">
+		  var ros = new ROSLIB.Ros({
+			url : 'ws://192.168.5.2:9090'
+		  });
+		 </script>
 	</head>
 	
 	<?php
@@ -48,7 +61,8 @@
 						
 						<?php buildMenu($tasklist); ?>
 						<ul>
-							<li><a id="testx" href="#">Test</a></li>
+							<li><a id="testx" href="#">sayTest</a></li>
+							<li><a id="testx2" href="#">mapTest</a></li>
 						</ul>
 						<ul>
 							<li class="icon icon-arrow-left">
@@ -228,6 +242,9 @@
 		$(document).ready(function(){
 		    $("#testx").click(function(){
 		        $("#content").load("say2.html");
+		    });
+		    $("#testx2").click(function(){
+		        $("#content").load("task3.html");
 		    });
 		});
 		</script>
