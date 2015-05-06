@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8" />
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
 <script src="js/easeljs.js"></script>
 <script src="js/eventemitter2.js"></script>
 <script src="js/roslib.js"></script>
@@ -10,6 +16,7 @@
 <script src="js/nav2d.js"></script>
 
 <script>
+  var gridClient;
   /**
    * Setup all visualization elements when the page is loaded. 
    */
@@ -26,8 +33,12 @@
       height : 544
     });
 
+    var zoomView = new ROS2D.ZoomView({
+      rootObject : viewer.scene
+    });
+
     // Setup the map client.
-    var gridClient = new NAV2D.OccupancyGridClientNav({
+    gridClient = new NAV2D.OccupancyGridClientNav({
       ros : ros,
       rootObject : viewer.scene,
       viewer : viewer,
@@ -46,11 +57,26 @@
       console.log('Connection to websocket server closed.');
     });
   }
+
+  function cancel() {
+    gridClient.navigator.cancelGoal();
+  }
 </script>
+<style type="text/css">
+   .btn-xlarge {
+    padding: 48px 68px;
+    font-size: 62px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 18px;
+       -moz-border-radius: 18px;
+            border-radius: 18px;
+  }
+  </style>
 </head>
 
 <body onload="init()">
   <h1>Simple Map Example</h1>
   <div id="map"></div>
+  <button class="btn btn-default btn-xlarge" role="submit" onclick="cancel()">Abbrechen</a>
 </body>
 </html>
