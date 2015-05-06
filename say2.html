@@ -1,0 +1,61 @@
+<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
+<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+  
+<script type="text/javascript" type="text/javascript">
+  var ros = new ROSLIB.Ros({
+    url : 'ws://192.168.5.2:9090'
+  });
+
+  var ttsClient = new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/TTS',
+    actionName : 'cerevoice_tts_msgs/TtsAction'
+  });
+
+  
+
+  function say(text_input) {
+    console.log('Saying: ' + text_input);
+    var goal = new ROSLIB.Goal({
+      actionClient : ttsClient,
+      goalMessage : {
+        voice : 'Alex',
+        text : text_input
+      }
+    });
+
+    goal.on('result', function(result) {
+      console.log('finished');
+    });
+
+    goal.send();
+  }
+
+  ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+  });
+
+  ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+  });
+
+  ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+  });
+
+</script>
+
+  <div class="container-fluid">
+   <div class="row-fluid">
+    <div class="span12">
+     <div class="row-fluid">
+      <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Hallo')">Hallo</a>
+      <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Ich heiße Marvin')">Ich heiße Marvin</a>
+     </div>
+     <div class="row-fluid">
+      <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Was geht')">Was geht</a>
+      <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Negativ')">Negativ</a>
+     </div>
+    </div>
+   </div>
+  </div>
