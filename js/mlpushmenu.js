@@ -127,11 +127,11 @@
 					document.getElementById('trigger_menu').style.display = 'none';
 					
 					// the menu should close if clicking somewhere on the body (excluding clicks on the menu)
-					document.addEventListener( self.eventtype, function( ev ) {
+					/*document.addEventListener( self.eventtype, function( ev ) {
 						if( self.open && !hasParent( ev.target, self.el.id ) ) {
 							bodyClickFn( this );
 						}
-					} );
+					} );*/
 				}
 			} );
 

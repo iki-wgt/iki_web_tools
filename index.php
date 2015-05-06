@@ -77,29 +77,12 @@
 											<a href="#">Wasser holen</a>
 										</li>
 										<li class="icon icon-arrow-left">
-											<a class="icon icon-tv" href="#">Televisions</a>
+											<a class="icon icon-tv" href="#">test2</a>
 											<div class="mp-level">
-												<h2>Televisions</h2>
+												<h2>test2</h2>
 												<a class="mp-back" href="#">back</a>
 												<ul>
-													<li><a href="#">Flat Superscreen</a></li>
-													<li><a href="#">Gigantic LED</a></li>
-													<li><a href="#">Power Eater</a></li>
-													<li><a href="#">3D Experience</a></li>
-													<li><a href="#">Classic Comfort</a></li>
-												</ul>
-											</div>
-										</li>
-										<li class="icon icon-arrow-left">
-											<a class="icon icon-camera" href="#">Cameras</a>
-											<div class="mp-level">
-												<h2>Cameras</h2>
-												<a class="mp-back" href="#">back</a>
-												<ul>
-													<li><a href="#">Smart Shot</a></li>
-													<li><a href="#">Power Shooter</a></li>
-													<li><a href="#">Easy Photo Maker</a></li>
-													<li><a href="#">Super Pixel</a></li>
+													<li><a href="#">xxx</a></li>
 												</ul>
 											</div>
 										</li>
