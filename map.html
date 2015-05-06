@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 
-<script src="http://cdn.robotwebtools.org/EaselJS/current/easeljs.js"></script>
-<script src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-<script src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
-<script src="http://cdn.robotwebtools.org/ros2djs/current/ros2d.js"></script>
-<script src="http://cdn.robotwebtools.org/nav2djs/current/nav2d.js"></script>
+<script src="js/easeljs.js"></script>
+<script src="js/eventemitter2.js"></script>
+<script src="js/roslib.js"></script>
+<script src="js/ros2d.js"></script>
+<script src="js/nav2d.js"></script>
 
 <script>
   /**
@@ -33,11 +33,6 @@
       viewer : viewer,
       withOrientation : true
     });
-    // Scale the canvas to fit to the map
-    /*gridClient.on('change', function() {
-      viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
-      viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
-    });*/
 
     ros.on('connection', function() {
       console.log('Connected to websocket server.');
@@ -56,17 +51,6 @@
 
 <body onload="init()">
   <h1>Simple Map Example</h1>
-  <p>
-    Run the following commands in the terminal then refresh this page. This will load a map from the
-    <tt>ros-groovy-rail-maps</tt>
-    package.
-  </p>
-  <ol>
-    <li><tt>roscore</tt></li>
-    <li><tt>rosrun map_server map_server /opt/ros/groovy/share/rail_maps/maps/ilab.pgm
-        0.05</tt></li>
-    <li><tt>roslaunch rosbridge_server rosbridge_websocket.launch</tt></li>
-  </ol>
   <div id="map"></div>
 </body>
 </html>
