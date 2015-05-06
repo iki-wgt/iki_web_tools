@@ -22,9 +22,9 @@ html, body, .container, .scroller {
 .container {
 	position: relative;
 	overflow: hidden;
-	background: #34495e;
+	/*background: #34495e;*/
 }
-
+/*
 .menu-trigger {
 	position: relative;
 	padding-left: 60px;
@@ -36,11 +36,11 @@ html, body, .container, .scroller {
 	top: 2px;
 	left: 0;
 	width: 40px;
-	height: 6px;
-	background: #fff;
+	height: 10px;
+	background: none;
 	box-shadow: 0 6px #34495e, 0 12px #fff, 0 18px #34495e, 0 24px #fff;
 	content: '';
-}
+}*/
 
 .mp-pusher {
 	position: relative;
