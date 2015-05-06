@@ -55,9 +55,9 @@ html, body, .container, .scroller {
 	z-index: 1;
 	width: 300px;
 	height: 100%;
-	-webkit-transform: translate3d(-100%, 0, 0);
-	-moz-transform: translate3d(-100%, 0, 0);
-	transform: translate3d(-100%, 0, 0);
+	x-webkit-transform: translate3d(-100%, 0, 0);
+	x-moz-transform: translate3d(-100%, 0, 0);
+	xtransform: translate3d(-100%, 0, 0);
 }
 
 .mp-level {

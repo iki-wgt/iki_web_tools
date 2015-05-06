@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -15,14 +17,38 @@
 		<link rel="stylesheet" type="text/css" href="css/custom.css" />
 		<script src="js/modernizr.custom.js"></script>
 	</head>
+	
+	<?php
+		ini_set('error_reporting', E_ALL);
+
+		$tasklist = array(
+			array("id","name","icon")
+		);
+		
+		function buildMenu($tasklist,$backlinks=true){
+			foreach ($tasklist as $task){
+			  #echo '<ul>';
+			}
+		}
+	?>
+	
 	<body>
+	
 		<div class="container">
+		
 			<!-- Push Wrapper -->
 			<div class="mp-pusher" id="mp-pusher">
 				<!-- mp-menu -->
+				<div id="content">fasdfxxxxxxxxxxxxxxxxxxxxxx</div>
 				<nav id="mp-menu" class="mp-menu">
+					
 					<div class="mp-level">
 						<h2 class="icon icon-world">Robot Control</h2>
+						
+						<?php buildMenu($tasklist); ?>
+						<ul>
+							<li><a id="test" href="#">Test</a></li>
+						</ul>
 						<ul>
 							<li class="icon icon-arrow-left">
 								<a class="icon icon-display" href="#">Aufgaben</a>
@@ -184,8 +210,8 @@
 				<!-- /mp-menu -->
 
 				<h2><a href="#" id="trigger" class="menu-trigger icon icon-params"> </a></h2>
-				
 			</div><!-- /pusher -->
+			
 		</div><!-- /container -->
 		<script src="js/classie.js"></script>
 		<script src="js/mlpushmenu.js"></script>
