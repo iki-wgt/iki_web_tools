@@ -30,20 +30,39 @@
 			url : 'ws://192.168.5.2:9090'
 		  });
 		 </script>
+		 
+		 <script type="text/javascript" type="text/javascript">
+			  function ajaxload(task){
+				  $("#content").load(task);
+			  }
+		 </script>
 	</head>
 	
 	<?php
 		ini_set('error_reporting', E_ALL);
 
 		$tasklist = array(
-			array("id","name","icon")
+			array("idtest","name","say2","icon"),
+			array("idtest2","name2","task3","icon"),
+			array("test",
+				array("idtest3","name2","icon","task3"),
+				array("")
+			)
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
 			$menu = '';
 			foreach ($tasklist as $task){
-			  $menu += '<ul>';
+				$menu .= '<ul>';
+				if (is_array($task[1])){
+					$menu .= 'array';
+				}else{
+					$menu .= '<li><a id="'.$task[0].'" href="#" onclick="ajaxload(\''.$task[2].'.html\')">'.$task[1].'</a></li>';
+					#$menu .= '<script>$("'.$task[0].'").click(function(){$("#content").load("say2.html");});</script>';
+				}
+				$menu .= "</ul>";
 			}
+			
 			return $menu;
 		}
 	?>
@@ -55,13 +74,14 @@
 			<!-- Push Wrapper -->
 			<div class="mp-pusher" id="mp-pusher">
 				<!-- mp-menu -->
-				<div id="content">fasdfxxxxxxxxxxxxxxxxxxxxxx</div>
+				<div id="content"></div>
+				
 				<nav id="mp-menu" class="mp-menu">
 					
 					<div class="mp-level">
 						<h2 class="icon icon-world">Robot Control</h2>
 						
-						<?php buildMenu($tasklist); ?>
+						<?php echo buildMenu($tasklist); ?>
 						<ul>
 							<li><a id="testx" href="#">sayTest</a></li>
 							<li><a id="testx2" href="#">mapTest</a></li>
@@ -225,7 +245,7 @@
 		
 		<script>
 		$(document).ready(function(){
-			$("#content").load("task3.html");
+			//$("#content").load("task3.html");
 			
 		    $("#testx").click(function(){
 		        $("#content").load("say2.html");
