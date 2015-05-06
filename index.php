@@ -40,9 +40,11 @@
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
+			$menu = '';
 			foreach ($tasklist as $task){
-			  #echo '<ul>';
+			  $menu += '<ul>';
 			}
+			return $menu;
 		}
 	?>
 	
@@ -224,7 +226,7 @@
 				</nav>
 				<!-- /mp-menu -->
 
-				<h2><a href="#" id="trigger" class="menu-trigger icon icon-params"> </a></h2>
+				<h2><a href="#" id="trigger_menu" class="menu-trigger icon icon-params"> </a></h2>
 			</div><!-- /pusher -->
 			
 		</div><!-- /container -->
@@ -232,7 +234,7 @@
 		<script src="js/mlpushmenu.js"></script>
 		<script>
 			// initialize the menu
-			new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+			new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger_menu' ) );
 			//new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ), {
 			//	type : 'cover'
 			//} );
@@ -240,6 +242,8 @@
 		
 		<script>
 		$(document).ready(function(){
+			$("#content").load("task3.html");
+			
 		    $("#testx").click(function(){
 		        $("#content").load("say2.html");
 		    });

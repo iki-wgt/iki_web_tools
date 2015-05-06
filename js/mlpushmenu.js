@@ -109,7 +109,7 @@
 				self._resetMenu();
 				el.removeEventListener( self.eventtype, bodyClickFn );
 				// added by benS: show trigger button
-				document.getElementById('trigger').style.display = 'block';
+				document.getElementById('trigger_menu').style.display = 'block';
 				
 			};
 
@@ -124,7 +124,7 @@
 					self._openMenu();
 					
 					// added by benS: show trigger button
-					document.getElementById('trigger').style.display = 'none';
+					document.getElementById('trigger_menu').style.display = 'none';
 					
 					// the menu should close if clicking somewhere on the body (excluding clicks on the menu)
 					document.addEventListener( self.eventtype, function( ev ) {
