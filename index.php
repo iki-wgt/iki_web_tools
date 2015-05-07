@@ -18,12 +18,12 @@
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/three.js"></script>
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/ColladaLoader.js"></script>
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/STLLoader.js"></script>
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/ros3djs/current/ros3d.js"></script>
+		<script type="text/javascript" src="js/eventemitter2.js"></script>
+		<script type="text/javascript" src="js/roslib.js"></script>
+		<script type="text/javascript" src="js/three.js"></script>
+		<script type="text/javascript" src=js/ColladaLoader.js"></script>
+		<script type="text/javascript" src="js/STLLoader.js"></script>
+		<script type="text/javascript" src="js/ros3d.js"></script>
 
 		<script type="text/javascript" type="text/javascript">
 		  var ros = new ROSLIB.Ros({
@@ -42,27 +42,40 @@
 		ini_set('error_reporting', E_ALL);
 
 		$tasklist = array(
-			array("idtest","name","say2","icon"),
-			array("idtest2","name2","task3","icon"),
+			array("idtest","name","say2"),
+			array("idtest2","name2","task3"),
 			array("test",
-				array("idtest3","name2","icon","task3"),
-				array("")
+				array(
+				  array("idtest3","name2","task3"),
+				  array("idtest4","name4","say2")
+				)
 			)
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
 			$menu = '';
+			$menu .= '<ul>';
 			foreach ($tasklist as $task){
-				$menu .= '<ul>';
+				
 				if (is_array($task[1])){
-					$menu .= 'array';
+					$menu .= '
+							<li class="icon icon-arrow-left">
+								<a class="" href="#">'.$task[0].'</a>
+								<div class="mp-level">
+									<h2 class="">'.$task[0].'</h2>
+									<a class="mp-back" href="#">zurück</a>
+									';
+					$menu .= buildMenu($task[1]);
+					$menu .= '
+								</div>
+							</li>';
 				}else{
-					$menu .= '<li><a id="'.$task[0].'" href="#" onclick="ajaxload(\''.$task[2].'.html\')">'.$task[1].'</a></li>';
+					$menu .= '<li><a id="'.$task[0].'" class="" href="#" onclick="ajaxload(\''.$task[2].'.html\')">'.$task[1].'</a></li>';
 					#$menu .= '<script>$("'.$task[0].'").click(function(){$("#content").load("say2.html");});</script>';
 				}
-				$menu .= "</ul>";
+				
 			}
-			
+			$menu .= "</ul>";
 			return $menu;
 		}
 	?>
@@ -80,36 +93,7 @@
 					
 					<div class="mp-level">
 						<h2 class="icon icon-world">Robot Control</h2>
-						
 						<?php echo buildMenu($tasklist); ?>
-						<ul>
-							<li><a id="testx" href="#">sayTest</a></li>
-							<li><a id="testx2" href="#">mapTest</a></li>
-						</ul>
-						<ul>
-							<li class="icon icon-arrow-left">
-								<a class="icon icon-display" href="#">Aufgaben</a>
-								<div class="mp-level">
-									<h2 class="icon icon-display">Aufgaben</h2>
-									<a class="mp-back" href="#">zurück</a>
-									<ul>
-										<li>
-											<a href="#">Wasser holen</a>
-										</li>
-										<li class="icon icon-arrow-left">
-											<a class="icon icon-tv" href="#">test2</a>
-											<div class="mp-level">
-												<h2>test2</h2>
-												<a class="mp-back" href="#">back</a>
-												<ul>
-													<li><a href="#">xxx</a></li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
 						<!--
 						<ul>
 							<li class="icon icon-arrow-left">

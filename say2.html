@@ -1,47 +1,44 @@
 <script>
 
-  var ttsClient = new ROSLIB.ActionClient({
-    ros : ros,
-    serverName : '/TTS',
-    actionName : 'cerevoice_tts_msgs/TtsAction'
-  });
+	var ttsClient = new ROSLIB.ActionClient({
+	  ros : ros,
+	  serverName : '/TTS',
+	  actionName : 'cerevoice_tts_msgs/TtsAction'
+	});
 
-  
+	
+	function say(text_input) {
+	  console.log('Saying: ' + text_input);
+	  var goal = new ROSLIB.Goal({
+		actionClient : ttsClient,
+		goalMessage : {
+		  voice : 'Alex',
+		  text : text_input
+		}
+	  });
 
-  function say(text_input) {
-    console.log('Saying: ' + text_input);
-    var goal = new ROSLIB.Goal({
-      actionClient : ttsClient,
-      goalMessage : {
-        voice : 'Alex',
-        text : text_input
-      }
-    });
+	  goal.on('result', function(result) {
+		console.log('finished');
+	  });
 
-    goal.on('result', function(result) {
-      console.log('finished');
-    });
+	  goal.send();
+	}
 
-    goal.send();
-  }
+	ros.on('connection', function() {
+	  console.log('Connected to websocket server.');
+	});
 
-  ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-  });
+	ros.on('error', function(error) {
+	  console.log('Error connecting to websocket server: ', error);
+	});
 
-  ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-  });
-
-  ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-  });
+	ros.on('close', function() {
+	  console.log('Connection to websocket server closed.');
+	});
 
 </script>
 
-  <div class="container-fluid">
-   <div class="row-fluid">
-    <div class="span12">
+<div id="wrapper" style="padding:100px;">
      <div class="row-fluid">
       <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Hallo')">Hallo</a>
       <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Ich heiße Marvin')">Ich heiße Marvin</a>
@@ -50,6 +47,4 @@
       <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Was geht')">Was geht</a>
       <button class="btn btn-default btn-xlarge" role="submit" onclick="say('Negativ')">Negativ</a>
      </div>
-    </div>
-   </div>
-  </div>
+</div>

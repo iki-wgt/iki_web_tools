@@ -51,8 +51,8 @@ a:hover, a:focus {
   position: absolute;
   z-index: 2;
   top: 0px;
-  width: 100%;
-  height: 100%;
-  left: 310px;
+  xwidth: 100%;
+  xheight: 100%;
+  xleft: 310px;
   }
 
