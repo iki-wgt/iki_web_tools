@@ -1,8 +1,40 @@
-	
-function ajaxload(task){
-	$("#content").load(task);
+
+function ajaxload(content){
+	$("#content").load(content);
 }
 
+function execute(task, data){
+	if (task == "ajax"){
+		ajaxload(data);
+	}
+	else if (task == "say"){
+		say(data);
+	}
+	else if (task == "goto"){
+		nav_goto(data);
+	}
+}
+	
+function say(text_input) {
+	console.log('Saying: ' + text_input);
+	var goal = new ROSLIB.Goal({
+		actionClient : ttsClient,
+		goalMessage : {
+		  voice : 'Alex',
+		  text : text_input
+		}
+	});
+	goal.on('result', function(result) {
+		console.log('finished');
+	});
+	goal.send();
+}
+
+function nav_goto(place_goal){
+	alert("todo");
+}
+	
+/*
 function notused(){
 
 	var viewer = new ROS3D.Viewer({
@@ -88,5 +120,6 @@ function notused(){
 	});
 
 }
+*/
 
 
