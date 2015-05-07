@@ -50,13 +50,16 @@
 
 		$tasklist = array(
 			array("saytest","say","hallo"),
+			array("sayform","ajax","say_form"),
 			array("gototest","goto","kitchen1"),
-			array("ajaxtestmap","ajax","task3.html"),
+			array("ajaxtestmap","ajax","task3"),
 			array("Navigation",
 				array(
+					array("Home","goto","home"),
 					array("Kitchen1","goto","kitchen1"),
 					array("Kitchen2","goto","kitchen2"),
 					array("Table1","goto","table1"),
+					array("Table2","goto","table2"),
 				)
 			)
 		);
