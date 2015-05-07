@@ -14,28 +14,24 @@
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		
 		<script type="text/javascript" src="js/eventemitter2.js"></script>
 		<script type="text/javascript" src="js/roslib.js"></script>
 		<script type="text/javascript" src="js/three.js"></script>
-		<script type="text/javascript" src=js/ColladaLoader.js"></script>
+		<script type="text/javascript" src="js/ColladaLoader.js"></script>
 		<script type="text/javascript" src="js/STLLoader.js"></script>
 		<script type="text/javascript" src="js/ros3d.js"></script>
-
+		<script type="text/javascript" src="js/iki_robot.js"></script>
+		
 		<script type="text/javascript" type="text/javascript">
-		  var ros = new ROSLIB.Ros({
-			url : 'ws://192.168.5.2:9090'
-		  });
+			 var ros = new ROSLIB.Ros({
+				url : 'ws://192.168.5.2:9090'
+			 });
 		 </script>
-		 
-		 <script type="text/javascript" type="text/javascript">
-			  function ajaxload(task){
-				  $("#content").load(task);
-			  }
-		 </script>
+
 	</head>
 	
 	<?php
@@ -81,9 +77,7 @@
 	?>
 	
 	<body>
-	
 		<div class="container">
-		
 			<!-- Push Wrapper -->
 			<div class="mp-pusher" id="mp-pusher">
 				<!-- mp-menu -->
@@ -213,7 +207,7 @@
 				</nav>
 				<!-- /mp-menu -->
 
-				<h2><a href="#" id="trigger_menu" class="menu-trigger icon icon-params"> </a></h2>
+				<a href="#" id="trigger_menu" class="menu-trigger icon icon-params"> </a>
 			</div><!-- /pusher -->
 			
 		</div><!-- /container -->
@@ -229,7 +223,11 @@
 		
 		<script>
 		$(document).ready(function(){
+			//var ros = initRosLib();
 			//$("#content").load("task3.html");
+			//var ros = new ROSLIB.Ros({
+	  		//	url : 'ws://192.168.5.2:9090'
+			//});
 			
 		    $("#testx").click(function(){
 		        $("#content").load("say2.html");
