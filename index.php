@@ -36,11 +36,11 @@
 				actionName : 'cerevoice_tts_msgs/TtsAction'
 			});
 
-			/*var navClient = new ROSLIB.ActionClient({
+			var navClient = new ROSLIB.ActionClient({
 					ros : ros,
-					serverName : '/TTS',
-					actionName : 'cerevoice_tts_msgs/TtsAction'
-			});*/
+					serverName : '/navigation_position_db_server/goto_position',
+					actionName : 'move_base_msgs/MoveBaseAction'
+			});
 		 </script>
 
 	</head>
@@ -50,12 +50,13 @@
 
 		$tasklist = array(
 			array("saytest","say","hallo"),
-			array("gototest","goto","kitchen"),
+			array("gototest","goto","kitchen1"),
 			array("ajaxtestmap","ajax","task3.html"),
-			array("Aufgabe",
+			array("Navigation",
 				array(
-				  array("name2","task3","hallo"),
-				  array("name4","say2","hallo")
+					array("Kitchen1","goto","kitchen1"),
+					array("Kitchen2","goto","kitchen2"),
+					array("Table1","goto","table1"),
 				)
 			)
 		);

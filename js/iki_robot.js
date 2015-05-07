@@ -31,7 +31,18 @@ function say(text_input) {
 }
 
 function nav_goto(place_goal){
-	alert("todo");
+	console.log('Navigate to: ' + place_goal);
+	var goal = new ROSLIB.Goal({
+		actionClient : navClient,
+		goalMessage : {
+		  room_name : 'lab',
+		  pos_name : place_goal
+		}
+	});
+	goal.on('result', function(result) {
+		console.log('finished');
+	});
+	goal.send();
 }
 	
 /*
