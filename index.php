@@ -39,7 +39,7 @@
 			var navClient = new ROSLIB.ActionClient({
 					ros : ros,
 					serverName : '/navigation_position_db_server/goto_position',
-					actionName : 'move_base_msgs/MoveBaseAction'
+					actionName : 'marvin_navigation_tools/GotoPositionAction'
 			});
 		 </script>
 
