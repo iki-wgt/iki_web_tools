@@ -11,10 +11,19 @@
 		<meta name="keywords" content="" />
 		<meta name="author" content="IKI" />
 		<link rel="shortcut icon" href="../favicon.ico">
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<!-- Optional theme 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		-->
+		
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
+		
+		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		
@@ -61,7 +70,6 @@
 					)
 				),
 				array("saytest","say","hallo"),
-				array("gototest","goto","kitchen1"),
 				array("ajaxtestmap","ajax","task3"),
 				array("zwavetest","zwave","test"),
 		);
@@ -96,7 +104,7 @@
 	
 	<body>
 	
-		<div class="container">
+		<div class="main_wrapper">
 			<!-- Push Wrapper -->
 			<div class="mp-pusher" id="mp-pusher">
 				
@@ -128,8 +136,8 @@
 		
 		<script>
 		$(document).ready(function(){
-			//ajaxload('say_form');
-			ajaxload('task3');
+			ajaxload('say_form');
+			//ajaxload('task3');
 
 		});
 		</script>

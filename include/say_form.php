@@ -31,8 +31,12 @@
 				'hallo, mein name ist marvin',
 				'wie heisst du?',
 				'das ist aber ein schöner name',
+				'ich bin ein service roboter prototyp',
 				'darf ich dir eine tasse kaffee anbieten?',
-				'<prosody pitch="1.5">Ich mag Helium Luftballons.</prosody><prosody pitch="0.7">Ich nicht.</prosody><spurt audio="g0001_026">x</spurt>. Ok zurück an die Arbeit!'
+				'&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;',
+				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;',
+				'&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;',
+				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;. Ok jetzt aber zur&uuml;ck an die Arbeit!'
 				
 		);
 		
@@ -48,8 +52,8 @@
 
 <div id="wrapper" style="padding:100px;">
 	<form id="frm1" action="#">
-	  Sage <input type="text" name="teststr" onkeypress="keyDetect(event)"><br>
-	  <input type="button" onclick="sayAndSave()" value="Submit">
+	  <input type="text" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
+	  <input type="button" onclick="sayAndSave()" value="Say it" class="btn btn-default btn-xlarge">
 	</form>
 	<div>
 		<div id="history">

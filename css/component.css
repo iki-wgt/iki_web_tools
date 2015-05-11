@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-html, body, .container, .scroller {
+html, body, .main_wrapper, .scroller {
 	height: 100%;
 }
 
@@ -19,7 +19,7 @@ html, body, .container, .scroller {
 	position: relative;
 }
 
-.container {
+.main_wrapper {
 	position: relative;
 	overflow: hidden;
 	/*background: #34495e;*/
