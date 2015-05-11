@@ -27,7 +27,9 @@
     actionName : 'cerevoice_tts_msgs/TtsAction'
   });
 
-  
+  ttsClient.on('status', function(status) {
+    console.log('action client status: ' + status.status + ' ' + status.text);
+  });
 
   function say(text_input) {
     console.log('Saying: ' + text_input);
