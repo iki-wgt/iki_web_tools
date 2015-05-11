@@ -1,0 +1,12 @@
+<div id="wrapper" style="padding:100px;">
+	<form id="frm1" action="#">
+	  String: <input type="text" name="teststr"><br>
+	  <input type="button" onclick="myFunction()" value="Submit">
+	</form>
+</div>
+<script>
+function myFunction() {
+    //document.getElementById("frm1").submit();
+    say(document.forms["frm1"]["teststr"].value);
+}
+</script>

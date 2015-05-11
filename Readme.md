@@ -2,6 +2,8 @@
 
 ==Running==
     roslaunch rosbridge_server rosbridge_websocket.launch
+    
+    Visit: http://192.168.5.2
 
 ==Dependencies==
 all imported from CDNs
