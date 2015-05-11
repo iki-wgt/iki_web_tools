@@ -63,7 +63,7 @@
 				array("saytest","say","hallo"),
 				array("gototest","goto","kitchen1"),
 				array("ajaxtestmap","ajax","task3"),
-				array("zwavetest","ajax","zwave"),
+				array("zwavetest","zwave","test"),
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){

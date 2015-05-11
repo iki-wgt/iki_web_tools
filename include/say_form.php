@@ -28,10 +28,11 @@
 		ini_set('error_reporting', E_ALL);
 
 		$savedTextList = array(
-				"hallo, mein name ist marvin",
-				"wie heisst du?",
-				"das ist aber ein schöner name",
-				"darf ich dir eine tasse kaffee anbieten?",
+				'hallo, mein name ist marvin',
+				'wie heisst du?',
+				'das ist aber ein schöner name',
+				'darf ich dir eine tasse kaffee anbieten?',
+				'<prosody pitch="1.5">Ich mag Helium Luftballons.</prosody><prosody pitch="0.7">Ich nicht.</prosody><spurt audio="g0001_026">x</spurt>. Ok zurück an die Arbeit!'
 				
 		);
 		
