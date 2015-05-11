@@ -24,10 +24,30 @@
 
 </style>
 
+	<?php
+		ini_set('error_reporting', E_ALL);
+
+		$savedTextList = array(
+				"hallo, mein name ist marvin",
+				"wie heisst du?",
+				"das ist aber ein schöner name",
+				"darf ich dir eine tasse kaffee anbieten?",
+				
+		);
+		
+		function buildPredefinedText($savedTextList){
+			$html = '';
+			foreach ($savedTextList as $text){
+					$html .= '<div id="test" class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
+			}
+			return $html;
+		}
+	?>
+
 
 <div id="wrapper" style="padding:100px;">
 	<form id="frm1" action="#">
-	  Sage <input type="text" name="teststr"><br>
+	  Sage <input type="text" name="teststr" onkeypress="keyDetect(event)"><br>
 	  <input type="button" onclick="sayAndSave()" value="Submit">
 	</form>
 	<div>
@@ -36,15 +56,23 @@
 		</div>
 		<div id="predefined">
 			<h2>Gespeicherte Vorgaben:</h2>
-			<div id="test" class="historyElement" onclick="say('test')">test</div>
+			<?php echo buildPredefinedText($savedTextList); ?>
 		</div>
 	</div>
 </div>
 <script>
+
+function keyDetect( event ){
+	if (event.keyCode == 13) {
+			event.preventDefault();
+			sayAndSave();
+		}
+}
+
 function sayAndSave() {
     //document.getElementById("frm1").submit();
     say(document.forms["frm1"]["teststr"].value);
-    $("#history").append('<div id="test" class="historyElement" onclick="say(\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
+    $("#history").append('<div class="historyElement" onclick="say(\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
 }
 </script>
 

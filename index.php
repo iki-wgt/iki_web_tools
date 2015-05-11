@@ -49,19 +49,21 @@
 		ini_set('error_reporting', E_ALL);
 
 		$tasklist = array(
-			array("saytest","say","hallo"),
-			array("sayform","ajax","say_form"),
-			array("gototest","goto","kitchen1"),
-			array("ajaxtestmap","ajax","task3"),
-			array("Navigation",
-				array(
-					array("Home","goto","home"),
-					array("Kitchen1","goto","kitchen1"),
-					array("Kitchen2","goto","kitchen2"),
-					array("Table1","goto","table1"),
-					array("Table2","goto","table2"),
-				)
-			)
+				array("Karte","ajax","task3"),
+				array("Sprache","ajax","say_form"),
+				array("Navigation",
+					array(
+						array("Home","goto","home"),
+						array("Kitchen1","goto","kitchen1"),
+						array("Kitchen2","goto","kitchen2"),
+						array("Table1","goto","table1"),
+						array("Table2","goto","table2"),
+					)
+				),
+				array("saytest","say","hallo"),
+				array("gototest","goto","kitchen1"),
+				array("ajaxtestmap","ajax","task3"),
+				array("zwavetest","ajax","zwave"),
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
@@ -126,20 +128,9 @@
 		
 		<script>
 		$(document).ready(function(){
+			//ajaxload('say_form');
+			ajaxload('task3');
 
-			ajaxload('say_form');
-			//var ros = initRosLib();
-			//$("#content").load("say2.html");
-			//var ros = new ROSLIB.Ros({
-	  		//	url : 'ws://192.168.5.2:9090'
-			//});
-			
-		    $("#testx").click(function(){
-		        $("#content").load("say2.html");
-		    });
-		    $("#testx2").click(function(){
-		        $("#content").load("task3.html");
-		    });
 		});
 		</script>
 	</body>
