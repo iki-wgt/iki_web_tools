@@ -126,8 +126,10 @@
 		
 		<script>
 		$(document).ready(function(){
+
+			ajaxload('say_form');
 			//var ros = initRosLib();
-			$("#content").load("say2.html");
+			//$("#content").load("say2.html");
 			//var ros = new ROSLIB.Ros({
 	  		//	url : 'ws://192.168.5.2:9090'
 			//});
