@@ -65,6 +65,8 @@
 		this.support = Modernizr.csstransforms3d;
 		if( this.support ) {
 			this._init();
+			// added by BS to open menu on startup
+			this._openMenu();
 		}
 	}
 
@@ -105,6 +107,8 @@
 			var self = this;
 
 			// the menu should close if clicking somewhere on the body
+			// disabled by BenS.
+			
 			var bodyClickFn = function( el ) {
 				self._resetMenu();
 				el.removeEventListener( self.eventtype, bodyClickFn );
@@ -123,7 +127,7 @@
 				else {
 					self._openMenu();
 					
-					// added by benS: show trigger button
+					// added by benS: hide trigger button
 					//document.getElementById('trigger_menu').style.display = 'none';
 					
 					// the menu should close if clicking somewhere on the body (excluding clicks on the menu)
