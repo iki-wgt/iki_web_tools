@@ -1,6 +1,6 @@
 
 function ajaxload(content){
-	$("#content").load("include/"+content+".html");
+	$("#content").load("include/"+content+".php");
 }
 
 function execute(task, data){
