@@ -67,6 +67,9 @@
 						array("Kitchen2","goto","kitchen2"),
 						array("Table1","goto","table1"),
 						array("Table2","goto","table2"),
+						array("Small Table","goto","smalltable"),
+						array("Sofa","goto","sofa"),
+						array("Shelf","goto","shelf"),
 					)
 				),
 				array("saytest","say","hallo"),

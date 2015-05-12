@@ -15,11 +15,16 @@
 }
 
 .historyElement{
+	border-radius: 25px;
 	margin-top:10px; 
-	padding:5px; 
-	background:grey; 
+	padding:20px; 
+	background:#383838; 
 	cursor: pointer; 
 	cursor: hand;
+}
+
+.historyElement:hover{
+	background: #336ca6;
 }
 
 </style>
