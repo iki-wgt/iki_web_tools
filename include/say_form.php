@@ -3,15 +3,15 @@
 #history{
 	display:inline-block;
 	vertical-align: text-top;
-	width: 200px; 
-	margin-right: 20px;
+	margin-right: 50px;
+	width: 250px;
 }
 
 #predefined{
 	display:inline-block;
 	vertical-align: text-top;
 	//float:right;
-	width: 200px;
+	width: 250px;
 }
 
 .historyElement{
@@ -48,7 +48,7 @@
 		function buildPredefinedText($savedTextList){
 			$html = '';
 			foreach ($savedTextList as $text){
-					$html .= '<div id="test" class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
+					$html .= '<div class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
 			}
 			return $html;
 		}
@@ -57,7 +57,7 @@
 
 <div id="wrapper" style="padding:100px;">
 	<form id="frm1" action="#">
-	  <input type="text" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
+	  <input type="text" size="65" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
 	  <input type="button" onclick="sayAndSave()" value="Say it" class="btn btn-default btn-xlarge">
 	</form>
 	<div>
