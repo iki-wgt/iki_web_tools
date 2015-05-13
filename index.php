@@ -50,6 +50,12 @@
 					serverName : '/navigation_position_db_server/goto_position',
 					actionName : 'marvin_navigation_tools/GotoPositionAction'
 			});
+
+			var gripperClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : '/gripper_controller/gripper_action',
+				actionName : 'control_msgs/GripperCommand'
+			});
 		 </script>
 
 	</head>
@@ -75,6 +81,8 @@
 							array("Change Battery","goto","changebatterypos"),
 					)
 				),
+				array("grippertest","gripper",0.6),
+				array("grippertest2","gripper",0.0),
 				array("saytest","say","hallo"),
 				array("ajaxtestmap","ajax","task3"),
 				array("zwavetest","zwave","test"),

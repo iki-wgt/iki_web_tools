@@ -33,10 +33,16 @@
 		ini_set('error_reporting', E_ALL);
 
 		$savedTextList = array(
+				'hallo!',
+				'danke',
+				'ja',
+				'nein',
+				'kein problem.',
+				'es tut mir leid. das kenne ich noch nicht.',
 				'hallo, mein name ist marvin',
 				'wie heisst du?',
 				'das ist aber ein schöner name',
-				'ich bin ein service roboter prototyp',
+				'ich bin ein service-roboter prototyp',
 				'darf ich dir eine tasse kaffee anbieten?',
 				'&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;',
 				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;',

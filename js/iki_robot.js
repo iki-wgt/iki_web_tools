@@ -13,6 +13,9 @@ function execute(task, data){
 	else if (task == "goto"){
 		nav_goto(data);
 	}
+	else if (task == "gripper"){
+		gripper_control(data);
+	}
 }
 	
 function say(text_input) {
@@ -37,6 +40,21 @@ function nav_goto(place_goal){
 		goalMessage : {
 		  room_name : 'lab',
 		  pos_name : place_goal
+		}
+	});
+	goal.on('result', function(result) {
+		console.log('finished');
+	});
+	goal.send();
+}
+
+function gripper_control(position_goal){
+	console.log('control gripper: ' + position_goal);
+	var goal = new ROSLIB.Goal({
+		actionClient : gripperClient,
+		command : {
+		  position : position_goal,
+		  max_effort: 0.0
 		}
 	});
 	goal.on('result', function(result) {
