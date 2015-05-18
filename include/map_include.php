@@ -4,11 +4,6 @@
   /**
    * Setup all visualization elements when the page is loaded. 
    */
-    // Connect to ROS.
-    var ros = new ROSLIB.Ros({
-      url : 'ws://192.168.5.2:9090'
-    });
-
     // Create the main viewer.
     var viewer = new ROS2D.Viewer({
       divID : 'map',
@@ -26,18 +21,6 @@
       rootObject : viewer.scene,
       viewer : viewer,
       withOrientation : true
-    });
-
-    ros.on('connection', function() {
-      console.log('Connected to websocket server.');
-    });
-
-    ros.on('error', function(error) {
-      console.log('Error connecting to websocket server: ', error);
-    });
-
-    ros.on('close', function() {
-      console.log('Connection to websocket server closed.');
     });
 
   function cancel() {
