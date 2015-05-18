@@ -33,6 +33,8 @@
 		<script type="text/javascript" src="js/ColladaLoader.js"></script>
 		<script type="text/javascript" src="js/STLLoader.js"></script>
 		<script type="text/javascript" src="js/ros3d.js"></script>
+		<script type="text/javascript" src="js/ros2d.js"></script>
+		<script type="text/javascript" src="js/nav2d.js"></script>
 		<script type="text/javascript" src="js/iki_robot.js"></script>
 		
 		<script type="text/javascript" type="text/javascript">
