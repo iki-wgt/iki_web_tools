@@ -66,7 +66,7 @@
 		$tasklist = array(
 				array("Karte","ajax","task3"),
 				array("Sprache","ajax","say_form"),
-				array("Karte2","ajax","map_included"),
+				array("Karte2","ajax","map_include"),
 				array("Navigation",
 					array(
 							array("Home","goto","home"),
