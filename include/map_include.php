@@ -59,8 +59,8 @@
   }
   </style>
 
-  <div id="map" onload="init()"></div>
-  <button class="btn btn-default btn-xlarge" role="submit" onclick="cancel()">Abbrechen</a>
+  <div id="map"></div>
+  <button class="btn btn-default btn-xlarge" role="submit" onclick="cancel()"  onload="init()">Abbrechen</a>
 
   <script type="text/javascript">
     var myimage = document.getElementById("map");
