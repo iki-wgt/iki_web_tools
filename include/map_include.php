@@ -4,7 +4,6 @@
   /**
    * Setup all visualization elements when the page is loaded. 
    */
-  function init() {
     // Connect to ROS.
     var ros = new ROSLIB.Ros({
       url : 'ws://192.168.5.2:9090'
@@ -40,7 +39,6 @@
     ros.on('close', function() {
       console.log('Connection to websocket server closed.');
     });
-  }
 
   function cancel() {
     gridClient.navigator.cancelGoal();
@@ -60,7 +58,7 @@
   </style>
 
   <div id="map"></div>
-  <button class="btn btn-default btn-xlarge" role="submit" onclick="cancel()"  onload="init()">Abbrechen</a>
+  <button class="btn btn-default btn-xlarge" role="submit" onclick="cancel()">Abbrechen</a>
 
   <script type="text/javascript">
     var myimage = document.getElementById("map");
