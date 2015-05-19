@@ -69,7 +69,7 @@
 		$tasklist = array(
 				array("Karte","ajax","task3"),
 				array("Sprache","ajax","say_form"),
-				array("Karte2","ajax","map_include"),
+				array("2D Karte","ajax","map_include"),
 				array("Navigation",
 					array(
 							array("Home","goto","home"),
@@ -85,11 +85,11 @@
 							array("Change Battery","goto","changebatterypos"),
 					)
 				),
-				array("grippertest","gripper",0.6),
-				array("grippertest2","gripper",0.0),
-				array("saytest","say","hallo"),
-				array("ajaxtestmap","ajax","task3"),
-				array("zwavetest","zwave","test"),
+				array("Öffne Hand","gripper",0.6),
+				array("Schließe Hand","gripper",0.0),
+				array("Steuerung","say","hallo"),
+				array("Aufgaben","ajax","task3"),
+				array("Haussteuerung","zwave","test"),
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
