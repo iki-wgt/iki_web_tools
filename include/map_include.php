@@ -1,34 +1,3 @@
-<script>
-  var gridClient;
-  var testVar = 3;
-  /**
-   * Setup all visualization elements when the page is loaded. 
-   */
-    // Create the main viewer.
-    var viewer = new ROS2D.Viewer({
-      divID : 'map',
-      width : 992,
-      height : 544
-    });
-
-    var zoomView = new ROS2D.ZoomView({
-      rootObject : viewer.scene
-    });
-
-    // Setup the map client.
-    gridClient = new NAV2D.OccupancyGridClientNav({
-      ros : ros,
-      rootObject : viewer.scene,
-      viewer : viewer,
-      withOrientation : true
-    });
-
-  function cancel() {
-    gridClient.navigator.cancelGoal();
-  }
-
-  
-</script>
 <style type="text/css">
    .btn-xlarge {
     padding: 48px 68px;
@@ -44,25 +13,73 @@
   <button class="btn btn-default btn-xlarge" role="submit" onclick="cancel()">Abbrechen</a>
 
   <script type="text/javascript">
-    var myimage = document.getElementById("map");
+    // Create the main viewer.
+  var viewer = new ROS2D.Viewer({
+    divID : 'map',
+    width : 992,
+    height : 544
+  });
+
+  var zoomView = new ROS2D.ZoomView({
+    rootObject : viewer.scene
+  });
+
+  // Setup the map client.
+  var gridClient = new NAV2D.OccupancyGridClientNav({
+    ros : ros,
+    rootObject : viewer.scene,
+    viewer : viewer,
+    withOrientation : true
+  });
+
+  function cancel() {
+    gridClient.navigator.cancelGoal();
+  }
+
+  var myimage = viewer.scene.canvas;//document.getElementById("map");
   if (myimage.addEventListener) {
     // IE9, Chrome, Safari, Opera
     myimage.addEventListener("mousewheel", MouseWheelHandler, false);
-    //myimage.onmousewheel = MouseWheelHandler;
     // Firefox
     myimage.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
   }
   // IE 6/7/8
   else myimage.attachEvent("onmousewheel", MouseWheelHandler);
 
+  var zoomLevel = 20;
+
   function MouseWheelHandler(e) {
     // cross-browser wheel delta
-    var e = window.event || e; // old IE support
     var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 
-    console.log('mousewheel delta ' + delta);
-    console.log('testVar ' + testVar);
+    if(delta > 0) {
+      if(zoomLevel > 0) {
+        zoomView.zoom(1.1);
+        zoomLevel = zoomLevel - 1;
+      }
+    }
+    else {
+      if(zoomLevel < 20) {
+        zoomView.zoom(1/1.1);
+        zoomLevel = zoomLevel + 1;
+      }
+    }
 
+    e.preventDefault();
     return false;
   }
-  </script>
+
+  function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+  }
+
+  viewer.scene.canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(viewer.scene.canvas, evt);
+
+        zoomView.startZoom(mousePos.x, mousePos.y);
+      }, false);
+</script>
