@@ -18,7 +18,7 @@
 <script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/three.js"></script>
 <script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/ColladaLoader.js"></script>
 <script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/r61/STLLoader.js"></script>
-<script type="text/javascript" src="http://cdn.robotwebtools.org/ros3djs/current/ros3d.js"></script>
+<script type="text/javascript" src="../js/ros3d.js"></script>
 
 <script type="text/javascript" type="text/javascript">
   function init() {
@@ -79,6 +79,16 @@
       topic : '/mpo700_interactive_teleop',
       camera : viewer.camera,
       rootObject : viewer.selectableObjects
+    });
+
+    var imClientObject = new ROS3D.InteractiveMarkerClient({
+      ros : ros,
+      tfClient : tfClient,
+      topic : '/interactive_object_markers', //'/basic_controls',
+      camera : viewer.camera,
+      rootObject : viewer.selectableObjects,
+      menuFontSize : '2em',
+      path : 'http://192.168.5.2/'
     });
 
     ros.on('connection', function() {
