@@ -50,15 +50,18 @@ function nav_goto(place_goal){
 
 function gripper_control(position_goal){
 	console.log('control gripper: ' + position_goal);
+	
 	var goal = new ROSLIB.Goal({
 		actionClient : gripperClient,
-		goalMessage : { 
-				command : {
-					position : position_goal,
-					max_effort: 0.0
+		goalMessage : {
+			command : {
+				position : parseFloat(position_goal),
+				max_effort: 0.1
 				}
-		}
+		} 
 	});
+	//console.log('objtest: ' + commandObj.position);
+	
 	goal.on('result', function(result) {
 		console.log('finished');
 	});

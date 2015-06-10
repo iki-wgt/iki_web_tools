@@ -85,8 +85,8 @@
 							array("Change Battery","goto","changebatterypos"),
 					)
 				),
-				array("Öffne Hand","gripper",0.1),
-				array("Schließe Hand","gripper",0.3),
+				array("Öffne Hand","gripper",0.0),
+				array("Schließe Hand","gripper",0.6),
 				array("xSteuerung","say","hallo"),
 				array("xAufgaben","ajax","task3"),
 				array("xHaussteuerung","zwave","test"),
