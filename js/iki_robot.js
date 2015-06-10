@@ -52,10 +52,12 @@ function gripper_control(position_goal){
 	console.log('control gripper: ' + position_goal);
 	var goal = new ROSLIB.Goal({
 		actionClient : gripperClient,
-		goalMessage : {
-			command : {
-			  position : position_goal,
-			  max_effort: 0.0
+		goalMessage : { 
+			goal : {
+				command : {
+					position : position_goal,
+					max_effort: 0.0
+				}
 			}
 		}
 	});
