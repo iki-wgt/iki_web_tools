@@ -85,11 +85,11 @@
 							array("Change Battery","goto","changebatterypos"),
 					)
 				),
-				array("Öffne Hand","gripper",0.6),
-				array("Schließe Hand","gripper",0.0),
-				array("Steuerung","say","hallo"),
-				array("Aufgaben","ajax","task3"),
-				array("Haussteuerung","zwave","test"),
+				array("Öffne Hand","gripper",0.1),
+				array("Schließe Hand","gripper",0.3),
+				array("xSteuerung","say","hallo"),
+				array("xAufgaben","ajax","task3"),
+				array("xHaussteuerung","zwave","test"),
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
