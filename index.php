@@ -59,6 +59,12 @@
 				serverName : '/gripper_controller/gripper_action',
 				actionName : 'control_msgs/GripperCommand'
 			});
+
+			var manipulationClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : '/marvin_pose_db_action/goto_position',
+				actionName : 'marvin_manipulation/GotoPoseAction'
+			});
 		 </script>
 
 	</head>
@@ -86,7 +92,14 @@
 					)
 				),
 				array("Öffne Hand","gripper",0.0),
-				array("Schließe Hand","gripper",0.6),
+				array("Schließe Hand","gripper",0.7),
+				array("Manipulator",
+						array(
+							array("Carry","manip","carry"),
+							array("Home","manip","home"),
+							array("Give","manip","give"),
+						)
+				),
 				array("xSteuerung","say","hallo"),
 				array("xAufgaben","ajax","task3"),
 				array("xHaussteuerung","zwave","test"),

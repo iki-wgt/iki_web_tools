@@ -16,6 +16,9 @@ function execute(task, data){
 	else if (task == "gripper"){
 		gripper_control(data);
 	}
+	else if (task == "manip"){
+		manipulation_control(data);
+	}
 }
 	
 function say(text_input) {
@@ -60,7 +63,22 @@ function gripper_control(position_goal){
 				}
 		} 
 	});
-	//console.log('objtest: ' + commandObj.position);
+	
+	goal.on('result', function(result) {
+		console.log('finished');
+	});
+	goal.send();
+}
+
+function manipulation_control(position_goal){
+	console.log('control gripper: ' + position_goal);
+	
+	var goal = new ROSLIB.Goal({
+		actionClient : manipulationClient,
+		goalMessage : {
+				pose_name : position_goal
+		} 
+	});
 	
 	goal.on('result', function(result) {
 		console.log('finished');
