@@ -54,6 +54,12 @@
 					actionName : 'marvin_navigation_tools/GotoPositionAction'
 			});
 
+			var navSaveClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : '/navigation_position_db_server/save_position',
+				actionName : 'marvin_navigation_tools/SavePositionAction'
+			});
+
 			var gripperClient = new ROSLIB.ActionClient({
 				ros : ros,
 				serverName : '/gripper_controller/gripper_action',
@@ -65,6 +71,12 @@
 				serverName : '/marvin_pose_db_action/goto_position',
 				actionName : 'marvin_manipulation/GotoPoseAction'
 			});
+
+			var manipulationSaveClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : '/marvin_pose_db_action/save_position',
+				actionName : 'marvin_manipulation/SavePoseAction'
+			});
 		 </script>
 
 	</head>
@@ -73,36 +85,25 @@
 		ini_set('error_reporting', E_ALL);
 
 		$tasklist = array(
-				array("Karte","ajax","task3"),
-				array("Sprache","ajax","say_form"),
-				array("2D Karte","ajax","map_include"),
+				
+				array("Sprache","ajax","speech"),
 				array("Navigation",
 					array(
-							array("Home","goto","home"),
-							array("Kitchen1","goto","kitchen1"),
-							array("Kitchen2","goto","kitchen2"),
-							array("Table1","goto","table1"),
-							array("Table2","goto","table2"),
-							array("Small Table","goto","smalltable"),
-							array("Sofa","goto","sofa"),
-							array("Shelf","goto","shelf"),
-							array("Speakpos","goto","speakpos"),
-							array("Charging","goto","chargepos"),
-							array("Change Battery","goto","changebatterypos"),
+							array("Karte","ajax","task3"),
+							array("2D Karte","ajax","map_include"),
+							array("Datenbank (pseudo)","ajax","navigation"),
 					)
 				),
-				array("Öffne Hand","gripper",0.0),
-				array("Schließe Hand","gripper",0.7),
 				array("Manipulator",
 						array(
-							array("Carry","manip","carry"),
-							array("Home","manip","home"),
-							array("Give","manip","give"),
+							array("Öffne Hand","gripper",0.0),
+							array("Schließe Hand","gripper",0.7),
+							array("Datenbank (pseudo)","ajax","manipulation"),
 						)
 				),
-				array("xSteuerung","say","hallo"),
-				array("xAufgaben","ajax","task3"),
-				array("xHaussteuerung","zwave","test"),
+				#array("xSteuerung","say","hallo"),
+				#array("xAufgaben","ajax","task3"),
+				#array("xHaussteuerung","zwave","test"),
 		);
 		
 		function buildMenu($tasklist,$backlinks=true){
@@ -167,8 +168,8 @@
 		
 		<script>
 		$(document).ready(function(){
-			ajaxload('say_form');
-			//ajaxload('task3');
+			//ajaxload('say_form');
+			ajaxload('task3');
 
 		});
 		</script>

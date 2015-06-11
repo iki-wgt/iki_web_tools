@@ -51,6 +51,21 @@ function nav_goto(place_goal){
 	goal.send();
 }
 
+function nav_save(place_name){
+	console.log('Save Landmark: ' + place_name);
+	var goal = new ROSLIB.Goal({
+		actionClient : navSaveClient,
+		goalMessage : {
+		  room_name : 'lab',
+		  pos_name : place_name
+		}
+	});
+	goal.on('result', function(result) {
+		console.log('finished');
+	});
+	goal.send();
+}
+
 function gripper_control(position_goal){
 	console.log('control gripper: ' + position_goal);
 	
@@ -71,12 +86,28 @@ function gripper_control(position_goal){
 }
 
 function manipulation_control(position_goal){
-	console.log('control gripper: ' + position_goal);
+	console.log('control arm: ' + position_goal);
 	
 	var goal = new ROSLIB.Goal({
 		actionClient : manipulationClient,
 		goalMessage : {
 				pose_name : position_goal
+		} 
+	});
+	
+	goal.on('result', function(result) {
+		console.log('finished');
+	});
+	goal.send();
+}
+
+function manipulation_save_pose(position_name){
+	console.log('saving pose: ' + position_name);
+	
+	var goal = new ROSLIB.Goal({
+		actionClient : manipulationSaveClient,
+		goalMessage : {
+				pose_name : position_name
 		} 
 	});
 	
