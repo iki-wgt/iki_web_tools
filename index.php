@@ -77,6 +77,11 @@
 				serverName : '/marvin_pose_db_action/save_position',
 				actionName : 'marvin_manipulation/SavePoseAction'
 			});
+			var octomapClient = new ROSLIB.Service({
+		       ros : ros,
+		       name : '/clear_octomap',
+		       serviceType : 'std_srvs/Empty'
+			});
 		 </script>
 
 	</head>
@@ -98,6 +103,7 @@
 						array(
 							array("Öffne Hand","gripper",0.0),
 							array("Schließe Hand","gripper",0.7),
+							array("Clear Octomap","clear_oct"),
 							array("Datenbank (pseudo)","ajax","manipulation"),
 						)
 				),

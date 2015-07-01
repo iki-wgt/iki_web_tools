@@ -19,6 +19,9 @@ function execute(task, data){
 	else if (task == "manip"){
 		manipulation_control(data);
 	}
+	else if (task == "clear_oct"){
+		clear_octomap();
+	}
 }
 	
 function say(text_input) {
@@ -115,6 +118,11 @@ function manipulation_save_pose(position_name){
 		console.log('finished');
 	});
 	goal.send();
+}
+
+function clear_octomap(){
+	console.log('clearing octomap');
+	octomapClient.callService();
 }
 	
 /*
