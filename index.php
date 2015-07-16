@@ -107,6 +107,7 @@
 							array("Datenbank (pseudo)","ajax","manipulation"),
 						)
 				),
+				array("Kamera","ajax","camera"),
 				#array("xSteuerung","say","hallo"),
 				#array("xAufgaben","ajax","task3"),
 				#array("xHaussteuerung","zwave","test"),
