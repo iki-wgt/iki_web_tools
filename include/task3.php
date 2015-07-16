@@ -61,6 +61,16 @@
       rootObject : viewer.selectableObjects
     });
 
+    var imClientObject = new ROS3D.InteractiveMarkerClient({
+      ros : ros,
+      tfClient : tfClient,
+      topic : '/interactive_object_markers',
+      camera : viewer.camera,
+      rootObject : viewer.selectableObjects,
+      menuFontSize : '2em',
+      path : 'http://192.168.5.2/'
+    });
+
     // Setup Kinect DepthCloud stream
     /*depthCloud = new ROS3D.DepthCloud({
       url : 'http://192.168.5.2:8080/stream?topic=/depthcloud_encoded&type=vp8&bitrate=250000&quality=best',
