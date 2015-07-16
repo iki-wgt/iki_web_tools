@@ -63,7 +63,7 @@
 			var gripperClient = new ROSLIB.ActionClient({
 				ros : ros,
 				serverName : '/jaco_arm_driver/gripper_action',
-				actionName : 'control_msgs/GripperCommand'
+				actionName : 'control_msgs/GripperCommandAction'
 			});
 
 			var manipulationClient = new ROSLIB.ActionClient({
