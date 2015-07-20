@@ -25,7 +25,7 @@
     x = u / w;
     y = v / w;
 
-    return [x, y];
+    return [x, y - 30];   // dirty hack. The origings of our models are at the bottom of the object. This puts the position a little bit more to the center.
 	}
 
   var objectInfoClient = new ROSLIB.Service({
@@ -82,15 +82,23 @@
                   radius: radius,
                   key: key
                 });
+
+                context.beginPath();
+                context.arc(coords[0], coords[1], radius, 0, 2 * Math.PI, false);
+                context.fillStyle = "rgba(255, 255, 255, 0.5)";
+                context.fill();
+
+                context.font = "30px Arial";
+                context.fillStyle = "rgba(255, 255, 255, 1.0)";
+                context.textAlign = "center";
+                context.textBaseline = 'top';
+                context.fillText(result.information.name, coords[0], coords[1] + radius);
               };
             };
 
             objectInfoClient.callService(request, push_name(coords, radius, message.objects[i].type.key));
 
-            context.beginPath();
-            context.arc(coords[0], coords[1], radius, 0, 2 * Math.PI, false);
-            context.fillStyle = "rgba(255, 255, 255, 0.5)";
-            context.fill();
+            
           } else {
             console.log('No valid projection matrix yet!');
           }
