@@ -3,16 +3,17 @@
   var canvas = document.getElementById('myCanvas');
   var context = canvas.getContext('2d');
   var elements = [];
+
   canvas.addEventListener('click', function(event) {
     var canvasPos = canvas.getBoundingClientRect();
     
     var x = event.pageX - canvasPos.left,
         y = event.pageY - canvasPos.top;
     elements.forEach(function(element) {
-        var euclidDistance = Math.sqrt(Math.pow(x - element.coordinates[0], 2) + Math.pow(y - element.coordinates[1], 2));
-        if (euclidDistance <= element.radius) {
-            console.log('clicked element: ' + element.name);
-        }
+      var euclidDistance = Math.sqrt(Math.pow(x - element.coordinates[0], 2) + Math.pow(y - element.coordinates[1], 2));
+      if (euclidDistance <= element.radius) {
+        console.log('clicked element: ' + element.name);
+      }
     });
   }, false);
 
@@ -26,6 +27,12 @@
 
     return [x, y];
 	}
+
+  var objectInfoClient = new ROSLIB.Service({
+    ros : ros,
+    name : '/get_object_info',
+    serviceType : 'object_recognition_msgs/GetObjectInformation'
+  });
   
   var cameraInfoListener = new ROSLIB.Topic({
     ros : ros,
@@ -43,49 +50,60 @@
   	projectionMatrix = message.P;
     console.log('Received message on ' + cameraInfoListener.name + ': ' + projectionMatrix);
     cameraInfoListener.unsubscribe();
-
+  
+    // this needs to be here, outside this callback we can't assure that we have the projection matrix
     objectListener.subscribe(function(message) {
-    
-    // clear everything
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    elements = [];
+      // clear everything
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      elements = [];
 
-    var i;
-    console.log('lenght: ' + message.objects.length);
-    for (i = 0; i < message.objects.length; i++) {
-       console.log(message.objects[i]);
-      if (message.objects[i].type.key != 'table') {
-        console.log('Saw object with key: ' + message.objects[i].type.key);
+      var i;
+      for (i = 0; i < message.objects.length; i++) {
+        if (message.objects[i].type.key != 'table') {
+          console.log('Saw object with key: ' + message.objects[i].type.key);
 
-        if (projectionMatrix.length == 12) {
-          var coords = projectPoint(message.objects[i].pose.pose.pose.position, projectionMatrix);
-          console.log('coords: ' + coords);
-          elements.push({
-            name: 'tbd',
-            coordinates: coords,
-            radius: 30
-          });
-          var centerX = coords[0];
-          var centerY = coords[1];
-          var radius = 30;
+          if (projectionMatrix.length == 12) {
+            var coords = projectPoint(message.objects[i].pose.pose.pose.position, projectionMatrix);
+            var radius = 30;
 
-          context.beginPath();
-          context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-          context.fillStyle = "rgba(255, 255, 255, 0.5)";
-          context.fill();
-        } else {
-          console.log('No valid projection matrix yet!');
+            // get the name of the object
+            var request = new ROSLIB.ServiceRequest({
+              type : {
+                key : message.objects[i].type.key,
+                db : message.objects[i].type.db
+              }
+            });
+
+            var push_name = function(coords, radius, key) {
+              return function(result) {
+                elements.push({
+                  name: result.information.name,
+                  coordinates: coords,
+                  radius: radius,
+                  key: key
+                });
+              };
+            };
+
+            objectInfoClient.callService(request, push_name(coords, radius, message.objects[i].type.key));
+
+            context.beginPath();
+            context.arc(coords[0], coords[1], radius, 0, 2 * Math.PI, false);
+            context.fillStyle = "rgba(255, 255, 255, 0.5)";
+            context.fill();
+          } else {
+            console.log('No valid projection matrix yet!');
+          }
         }
       }
-  //    for (j = 0; j < object..length; j++) {
-//pose.pose.pose.position
-    //  }
-    }
+    });
   });
 
   
 
-  });
+  
+
+  
 </script>
 
 <div id="parentDiv">
