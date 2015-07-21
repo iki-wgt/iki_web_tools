@@ -1,3 +1,13 @@
+<style type="text/css">
+  .btn-xlarge {
+    padding: 48px 68px;
+    font-size: 62px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 18px;
+     -moz-border-radius: 18px;
+          border-radius: 18px;
+  }
+</style>  
 <script type="text/javascript" type="text/javascript">
   var projectionMatrix = [];
   var canvas = document.getElementById('myCanvas');
@@ -83,8 +93,6 @@
         }
       }
     }
-
-    objectListener.unsubscribe();   // with this the duplicate subscription gets removed. Don't know why but it works!
   }
 
   var objectInfoClient = new ROSLIB.Service({
@@ -121,15 +129,35 @@
     objectListener.subscribe(objectCallback);
   });
 
-  
+  function detectObjects() {
+    var orClient = new ROSLIB.ActionClient({
+      ros : ros,
+      serverName : '/recognize_objects',
+      actionName : 'object_recognition_msgs/ObjectRecognitionAction'
+    });
 
-  
+    var goal = new ROSLIB.Goal({
+      actionClient : orClient,
+      goalMessage : {
+        use_roi : false,
+        filter_limits : []
+      }
+    });
 
+    goal.on('result', function(result) {
+      console.log('Final Result: ');
+    });
+
+    goal.send();
+  }
   
 </script>
 
-<div id="parentDiv">
-<div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=/camera/rgb/image_rect_color&type=mjpeg"></img></div>
-<div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
+<div>
+  <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=/camera/rgb/image_rect_color&type=mjpeg"></img></div>
+  <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
+</div>
 
+<div style="position: relative; top: 500px">
+  <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
 </div>
