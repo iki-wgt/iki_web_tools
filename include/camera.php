@@ -13,6 +13,9 @@
       var euclidDistance = Math.sqrt(Math.pow(x - element.coordinates[0], 2) + Math.pow(y - element.coordinates[1], 2));
       if (euclidDistance <= element.radius) {
         console.log('clicked element: ' + element.name);
+
+        var desired_object = new ROSLIB.Message({data : element.name});
+        desiredObjPub.publish(desired_object);
       }
     });
   }, false);
@@ -33,6 +36,12 @@
     name : '/get_object_info',
     serviceType : 'object_recognition_msgs/GetObjectInformation'
   });
+
+  var desiredObjPub = new ROSLIB.Topic({
+    ros : ros,
+    name : '/desired_object',
+    messageType : 'std_msgs/String'
+  });
   
   var cameraInfoListener = new ROSLIB.Topic({
     ros : ros,
@@ -50,7 +59,7 @@
   	projectionMatrix = message.P;
     console.log('Received message on ' + cameraInfoListener.name + ': ' + projectionMatrix);
     cameraInfoListener.unsubscribe();
-  
+    
     // this needs to be here, outside this callback we can't assure that we have the projection matrix
     objectListener.subscribe(function(message) {
       // clear everything
