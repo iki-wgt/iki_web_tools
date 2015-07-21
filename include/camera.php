@@ -12,6 +12,7 @@
   var projectionMatrix = [];
   var canvas = document.getElementById('myCanvas');
   var context = canvas.getContext('2d');
+  var stage = new createjs.Stage("myCanvas");
   var elements = [];
 
   canvas.addEventListener('click', function(event) {
@@ -72,16 +73,18 @@
                 key: key
               });
 
-              context.beginPath();
-              context.arc(coords[0], coords[1], radius, 0, 2 * Math.PI, false);
-              context.fillStyle = "rgba(255, 255, 255, 0.5)";
-              context.fill();
+              var circle = new createjs.Shape();
+              circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(coords[0], coords[1], radius);
 
-              context.font = "30px Arial";
-              context.fillStyle = "rgba(255, 255, 255, 1.0)";
-              context.textAlign = "center";
-              context.textBaseline = 'top';
-              context.fillText(result.information.name, coords[0], coords[1] + radius);
+              stage.addChild(circle);
+
+              var text = new createjs.Text(result.information.name, "30px Arial", "rgba(255, 255, 255, 1.0)");
+              text.textAlign = "center";
+              text.textBaseline = 'top';
+              text.x = coords[0];
+              text.y = coords[1] + radius;
+              stage.addChild(text);
+              stage.update();
             };
           };
 
