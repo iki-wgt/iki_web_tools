@@ -31,6 +31,62 @@
     return [x, y - 30];   // dirty hack. The origings of our models are at the bottom of the object. This puts the position a little bit more to the center.
 	}
 
+  function objectCallback(message) {
+    // clear everything
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    elements = [];
+    console.log('In object callback');
+    var i;
+    for (i = 0; i < message.objects.length; i++) {
+      if (message.objects[i].type.key != 'table') {
+        console.log('Saw object with key: ' + message.objects[i].type.key);
+
+        if (projectionMatrix.length == 12) {
+          var coords = projectPoint(message.objects[i].pose.pose.pose.position, projectionMatrix);
+          var radius = 30;
+
+          // get the name of the object
+          var request = new ROSLIB.ServiceRequest({
+            type : {
+              key : message.objects[i].type.key,
+              db : message.objects[i].type.db
+            }
+          });
+
+          var push_name = function(coords, radius, key) {
+            return function(result) {
+              elements.push({
+                name: result.information.name,
+                coordinates: coords,
+                radius: radius,
+                key: key
+              });
+
+              context.beginPath();
+              context.arc(coords[0], coords[1], radius, 0, 2 * Math.PI, false);
+              context.fillStyle = "rgba(255, 255, 255, 0.5)";
+              context.fill();
+
+              context.font = "30px Arial";
+              context.fillStyle = "rgba(255, 255, 255, 1.0)";
+              context.textAlign = "center";
+              context.textBaseline = 'top';
+              context.fillText(result.information.name, coords[0], coords[1] + radius);
+            };
+          };
+
+          objectInfoClient.callService(request, push_name(coords, radius, message.objects[i].type.key));
+
+          
+        } else {
+          console.log('No valid projection matrix yet!');
+        }
+      }
+    }
+
+    objectListener.unsubscribe();   // with this the duplicate subscription gets removed. Don't know why but it works!
+  }
+
   var objectInfoClient = new ROSLIB.Service({
     ros : ros,
     name : '/get_object_info',
@@ -52,7 +108,8 @@
   var objectListener = new ROSLIB.Topic({
     ros : ros,
     name : '/recognized_object_array',
-    messageType : 'object_recognition_msgs/RecognizedObjectArray'
+    messageType : 'object_recognition_msgs/RecognizedObjectArray',
+    queue_length : 1
   });
 
   cameraInfoListener.subscribe(function(message) {
@@ -61,59 +118,7 @@
     cameraInfoListener.unsubscribe();
     
     // this needs to be here, outside this callback we can't assure that we have the projection matrix
-    objectListener.subscribe(function(message) {
-      // clear everything
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      elements = [];
-
-      var i;
-      for (i = 0; i < message.objects.length; i++) {
-        if (message.objects[i].type.key != 'table') {
-          console.log('Saw object with key: ' + message.objects[i].type.key);
-
-          if (projectionMatrix.length == 12) {
-            var coords = projectPoint(message.objects[i].pose.pose.pose.position, projectionMatrix);
-            var radius = 30;
-
-            // get the name of the object
-            var request = new ROSLIB.ServiceRequest({
-              type : {
-                key : message.objects[i].type.key,
-                db : message.objects[i].type.db
-              }
-            });
-
-            var push_name = function(coords, radius, key) {
-              return function(result) {
-                elements.push({
-                  name: result.information.name,
-                  coordinates: coords,
-                  radius: radius,
-                  key: key
-                });
-
-                context.beginPath();
-                context.arc(coords[0], coords[1], radius, 0, 2 * Math.PI, false);
-                context.fillStyle = "rgba(255, 255, 255, 0.5)";
-                context.fill();
-
-                context.font = "30px Arial";
-                context.fillStyle = "rgba(255, 255, 255, 1.0)";
-                context.textAlign = "center";
-                context.textBaseline = 'top';
-                context.fillText(result.information.name, coords[0], coords[1] + radius);
-              };
-            };
-
-            objectInfoClient.callService(request, push_name(coords, radius, message.objects[i].type.key));
-
-            
-          } else {
-            console.log('No valid projection matrix yet!');
-          }
-        }
-      }
-    });
+    objectListener.subscribe(objectCallback);
   });
 
   
