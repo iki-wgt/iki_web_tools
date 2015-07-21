@@ -7,29 +7,11 @@
      -moz-border-radius: 18px;
           border-radius: 18px;
   }
-</style>  
+</style>
 <script type="text/javascript" type="text/javascript">
   var projectionMatrix = [];
-  var canvas = document.getElementById('myCanvas');
-  var context = canvas.getContext('2d');
   var stage = new createjs.Stage("myCanvas");
   var elements = [];
-
-  canvas.addEventListener('click', function(event) {
-    var canvasPos = canvas.getBoundingClientRect();
-    
-    var x = event.pageX - canvasPos.left,
-        y = event.pageY - canvasPos.top;
-    elements.forEach(function(element) {
-      var euclidDistance = Math.sqrt(Math.pow(x - element.coordinates[0], 2) + Math.pow(y - element.coordinates[1], 2));
-      if (euclidDistance <= element.radius) {
-        console.log('clicked element: ' + element.name);
-
-        var desired_object = new ROSLIB.Message({data : element.name});
-        desiredObjPub.publish(desired_object);
-      }
-    });
-  }, false);
 
 	function projectPoint(point, projMatrix) {	// projMatrix is a 12 element vector representing the 3x4 matrix, point is of type geometry_msgs/Point
 		u = projMatrix[0] * point.x + projMatrix[1] * point.y + projMatrix[2] * point.z + projMatrix[3];
@@ -44,7 +26,7 @@
 
   function objectCallback(message) {
     // clear everything
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    stage.clear();
     elements = [];
     console.log('In object callback');
     var i;
@@ -73,8 +55,22 @@
                 key: key
               });
 
+              var handleClick = function(element) {
+                return function(event) { 
+                  console.log('clicked element: ' + element.name);
+
+                  var desired_object = new ROSLIB.Message({data : element.name});
+                  desiredObjPub.publish(desired_object);
+                }
+              }
               var circle = new createjs.Shape();
               circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(coords[0], coords[1], radius);
+              circle.addEventListener("click", handleClick({
+                name: result.information.name,
+                coordinates: coords,
+                radius: radius,
+                key: key
+              }));
 
               stage.addChild(circle);
 
