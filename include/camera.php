@@ -41,6 +41,7 @@
     circle.addEventListener("click", handleClick(object));
 
     stage.addChild(circle);
+    object.circle = circle;
 
     var text = new createjs.Text(object.name, "30px Arial", "rgba(255, 255, 255, 1.0)");
     text.textAlign = "center";
@@ -48,6 +49,7 @@
     text.x = coords[0];
     text.y = coords[1] + object.radius;
     stage.addChild(text);
+    object.text = text;
     stage.update();
   }
 
@@ -76,13 +78,9 @@
             return function(result) {
               if(typeof invTfTransform != 'undefined') {
                 var pose2 = new ROSLIB.Pose(pose);
-                console.log('normal pose:');
-                console.log(pose.position);
-                console.log(pose2);
+                
                 var transPos = pose2.clone();
                 transPos.applyTransform(tfTransform);
-                console.log('transformed:');
-                console.log(transPos);
               }
 
               element = {
@@ -91,7 +89,9 @@
                 radius : radius,
                 key : key,
                 header : result.header,
-                worldPose : transPos
+                worldPose : transPos,
+                circle : {},
+                text : {}
               }
 
               elements.push(element);
@@ -156,15 +156,23 @@
     invTfTransform.translation.z *= -1;
 
     console.log('Will now redraw!!!!!!!!!!!!!!');
-    stage.removeAllChildren();
+    //stage.removeAllChildren();
     elements.forEach(function(element) {
       var new_pose = element.worldPose.clone();
       new_pose.applyTransform(invTfTransform);
       element.pos = new_pose.position;
-      console.log('new pose:');
-      console.log(element.pos);
-      drawObject(element);
+
+      if (typeof element.circle != 'undefined' && typeof element.text != 'undefined') {
+        var coords = projectPoint(element.pos, projectionMatrix);
+        element.circle.x = coords[0];
+        element.circle.y = coords[1];
+        element.text.x = coords[0];
+        element.text.y = coords[1] + element.radius;
+      }
+      //drawObject(element);
     })
+
+    stage.update;
   })
 
   cameraInfoListener.subscribe(function(message) {
