@@ -24,9 +24,33 @@
     return [x, y - 30];   // dirty hack. The origings of our models are at the bottom of the object. This puts the position a little bit more to the center.
 	}
 
+  function drawObject(object) {
+    var handleClick = function(element) {
+      return function(event) { 
+        console.log('clicked element: ' + element.name);
+
+        var desired_object = new ROSLIB.Message({data : element.name});
+        desiredObjPub.publish(desired_object);
+      }
+    }
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(object.coordinates[0], object.coordinates[1], object.radius);
+    circle.addEventListener("click", handleClick(object));
+
+    stage.addChild(circle);
+
+    var text = new createjs.Text(object.name, "30px Arial", "rgba(255, 255, 255, 1.0)");
+    text.textAlign = "center";
+    text.textBaseline = 'top';
+    text.x = object.coordinates[0];
+    text.y = object.coordinates[1] + object.radius;
+    stage.addChild(text);
+    stage.update();
+  }
+
   function objectCallback(message) {
     // clear everything
-    stage.clear();
+    stage.removeAllChildren();
     elements = [];
     console.log('In object callback');
     var i;
@@ -48,39 +72,17 @@
 
           var push_name = function(coords, radius, key) {
             return function(result) {
-              elements.push({
-                name: result.information.name,
-                coordinates: coords,
-                radius: radius,
-                key: key
-              });
-
-              var handleClick = function(element) {
-                return function(event) { 
-                  console.log('clicked element: ' + element.name);
-
-                  var desired_object = new ROSLIB.Message({data : element.name});
-                  desiredObjPub.publish(desired_object);
-                }
+              element = {
+                name : result.information.name,
+                coordinates : coords,
+                radius : radius,
+                key : key,
+                header : result.header
               }
-              var circle = new createjs.Shape();
-              circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(coords[0], coords[1], radius);
-              circle.addEventListener("click", handleClick({
-                name: result.information.name,
-                coordinates: coords,
-                radius: radius,
-                key: key
-              }));
 
-              stage.addChild(circle);
+              elements.push(element);
 
-              var text = new createjs.Text(result.information.name, "30px Arial", "rgba(255, 255, 255, 1.0)");
-              text.textAlign = "center";
-              text.textBaseline = 'top';
-              text.x = coords[0];
-              text.y = coords[1] + radius;
-              stage.addChild(text);
-              stage.update();
+              drawObject(element);
             };
           };
 
@@ -134,7 +136,7 @@
       serverName : '/recognize_objects',
       actionName : 'object_recognition_msgs/ObjectRecognitionAction'
     });
-
+    console.log('clicked button');
     var goal = new ROSLIB.Goal({
       actionClient : orClient,
       goalMessage : {
@@ -150,13 +152,122 @@
     goal.send();
   }
   
+  var tfClient = new ROSLIB.TFClient({
+    ros : ros,
+    angularThres : 0.01,
+    transThres : 0.01,
+    rate : 10.0,
+    fixedFrame: 'odom_combined'
+  });
+
+  tfClient.subscribe('/camera_rgb_optical_frame', function(transformMsg) {
+    //console.log(transformMsg);
+  })
+
+  var maxPanParam = new ROSLIB.Param({
+    ros : ros,
+    name : 'ptu/max_pan'
+  });
+
+  var minPanParam = new ROSLIB.Param({
+    ros : ros,
+    name : 'ptu/min_pan'
+  });
+
+  var maxTiltParam = new ROSLIB.Param({
+    ros : ros,
+    name : 'ptu/max_tilt'
+  });
+
+  var minTiltParam = new ROSLIB.Param({
+    ros : ros,
+    name : 'ptu/min_tilt'
+  });
+
+  var maxPan, minPan, maxTilt, minTilt;
+
+  maxPanParam.get(function(value) {maxPan = value;});
+  minPanParam.get(function(value) {minPan = value;});
+  maxTiltParam.get(function(value) {maxTilt = value;});
+  minTiltParam.get(function(value) {minTilt = value;});
+
+  function movePTU(direction) {
+    var ptuJointStateListener = new ROSLIB.Topic({
+      ros : ros,
+      name : '/ptu/joint_states',
+      messageType : 'sensor_msgs/JointState'
+    });
+
+    var ptuCmdPublisher = new ROSLIB.Topic({
+      ros : ros,
+      name : '/ptu/cmd',
+      messageType : 'sensor_msgs/JointState'
+    });
+
+    ptuJointStateListener.subscribe(function(message) {
+      ptuJointStateListener.unsubscribe();
+      console.log('ptu click');
+      var panIndex = -1;
+      var tiltIndex = -1;
+
+      if (message.name[0] == 'ptu_pan') {
+        panIndex = 0;
+        tiltIndex = 1;
+      } else {
+        panIndex = 1;
+        tiltIndex = 0;
+      }
+
+      switch (direction) {
+        case 'up':
+          message.position[tiltIndex] += 0.1;
+          message.position[panIndex] *= -1.0;   // the PTU driver somehow inverts the pan joint positions
+          if (message.position[tiltIndex] > maxTilt) {message.position[tiltIndex] = maxTilt;};
+          break;
+        case 'left':
+          message.position[panIndex] = message.position[panIndex] * -1.0 + 0.1;
+          if (message.position[tiltIndex] > maxPan) {message.position[tiltIndex] = maxPan;};
+          break;
+        case 'right':
+          message.position[panIndex] = message.position[panIndex] * -1.0 - 0.1;
+          if (message.position[tiltIndex] < minPan) {message.position[tiltIndex] = minPan;};
+          break;
+        case 'down':
+          message.position[tiltIndex] -= 0.1;
+          message.position[panIndex] *= -1.0;
+          if (message.position[tiltIndex] < minTilt) {message.position[tiltIndex] = minTilt;};
+          break;
+        default:
+          console.log("default block of switch statement shouldn't be reached! Valid directions: up, left, right, down");
+      }
+
+      message.header = {};
+      message.velocity = [0.5, 0.5];
+
+      ptuCmdPublisher.publish(message);
+    })
+  }
 </script>
 
 <div>
+<div style="position: absolute; left: 80px" onclick="movePTU('up')">
+  <img src="img/arrow_up.png" />
+</div>
+<div style="position: absolute; top: 80px" onclick="movePTU('left')">
+  <img src="img/arrow_left.png" />
+</div>
+<div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
+  <img src="img/arrow_right.png" />
+</div>
+<div style="position: absolute; top: 80px; left: 80px">
   <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=/camera/rgb/image_rect_color&type=mjpeg"></img></div>
   <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
 </div>
+<div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
+  <img src="img/arrow_down.png" />
+</div>
+</div>
 
-<div style="position: relative; top: 500px">
+<div style="position: absolute; top: 640px">
   <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
 </div>
