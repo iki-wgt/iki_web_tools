@@ -33,8 +33,11 @@
         desiredObjPub.publish(desired_object);
       }
     }
+
+    var coords = projectPoint(object.pos, projectionMatrix);
+
     var circle = new createjs.Shape();
-    circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(object.coordinates[0], object.coordinates[1], object.radius);
+    circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(coords[0], coords[1], object.radius);
     circle.addEventListener("click", handleClick(object));
 
     stage.addChild(circle);
@@ -42,8 +45,8 @@
     var text = new createjs.Text(object.name, "30px Arial", "rgba(255, 255, 255, 1.0)");
     text.textAlign = "center";
     text.textBaseline = 'top';
-    text.x = object.coordinates[0];
-    text.y = object.coordinates[1] + object.radius;
+    text.x = coords[0];
+    text.y = coords[1] + object.radius;
     stage.addChild(text);
     stage.update();
   }
@@ -59,7 +62,6 @@
         console.log('Saw object with key: ' + message.objects[i].type.key);
 
         if (projectionMatrix.length == 12) {
-          var coords = projectPoint(message.objects[i].pose.pose.pose.position, projectionMatrix);
           var radius = 30;
 
           // get the name of the object
@@ -70,14 +72,30 @@
             }
           });
 
-          var push_name = function(coords, radius, key) {
+          var push_name = function(position, radius, key) {
             return function(result) {
+              if(typeof invTfTransform != 'undefined') {
+                var pose = new ROSLIB.Pose(message.objects[i].pose.pose.pose);
+                console.log('normal pose:');
+                console.log(pose);
+                var transPos = pose.clone();
+                transPos.applyTransform(tfTransform);
+                console.log('transformed:');
+                console.log(transPos);
+
+                //var invTransPos = transPos.clone();
+                //invTransPos.applyTransform(invTfTransform);
+                //console.log('inverse transformed:');
+                //console.log(invTransPos);
+              }
+
               element = {
                 name : result.information.name,
-                coordinates : coords,
+                pos : position,
                 radius : radius,
                 key : key,
-                header : result.header
+                header : result.header,
+                worldPose : transPos
               }
 
               elements.push(element);
@@ -86,8 +104,7 @@
             };
           };
 
-          objectInfoClient.callService(request, push_name(coords, radius, message.objects[i].type.key));
-
+          objectInfoClient.callService(request, push_name(message.objects[i].pose.pose.pose.position, radius, message.objects[i].type.key));
           
         } else {
           console.log('No valid projection matrix yet!');
@@ -121,6 +138,40 @@
     queue_length : 1
   });
 
+  var tfClient = new ROSLIB.TFClient({
+    ros : ros,
+    angularThres : 0.01,
+    transThres : 0.01,
+    rate : 10.0,
+    fixedFrame: 'odom_combined'
+  });
+
+  var tfTransform, invTfTransform;
+  tfClient.subscribe('/camera_rgb_optical_frame', function(transformMsg) {
+    //console.log(transformMsg);
+    tfTransform = new ROSLIB.Transform(transformMsg);
+    //console.log('tfTransform:');
+    //console.log(tfTransform);
+    // from InteractiveMarkerHandle.js
+    invTfTransform = this.tfTransform.clone();
+    invTfTransform.rotation.invert();
+    invTfTransform.translation.multiplyQuaternion(invTfTransform.rotation);
+    invTfTransform.translation.x *= -1;
+    invTfTransform.translation.y *= -1;
+    invTfTransform.translation.z *= -1;
+    //console.log('invTfTransform:');
+    //console.log(invTfTransform);
+
+    /*console.log('Will now redraw!!!!!!!!!!!!!!');
+    stage.removeAllChildren();
+    elements.forEach(function(element) {
+      element.pos = element.worldPose;
+      element.worldPose.applyTransform(invTfTransform);
+
+      drawObject(element);
+    })*/
+  })
+
   cameraInfoListener.subscribe(function(message) {
   	projectionMatrix = message.P;
     console.log('Received message on ' + cameraInfoListener.name + ': ' + projectionMatrix);
@@ -151,18 +202,6 @@
 
     goal.send();
   }
-  
-  var tfClient = new ROSLIB.TFClient({
-    ros : ros,
-    angularThres : 0.01,
-    transThres : 0.01,
-    rate : 10.0,
-    fixedFrame: 'odom_combined'
-  });
-
-  tfClient.subscribe('/camera_rgb_optical_frame', function(transformMsg) {
-    //console.log(transformMsg);
-  })
 
   var maxPanParam = new ROSLIB.Param({
     ros : ros,
