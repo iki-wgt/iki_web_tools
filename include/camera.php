@@ -72,26 +72,22 @@
             }
           });
 
-          var push_name = function(position, radius, key) {
+          var push_name = function(pose, radius, key) {
             return function(result) {
               if(typeof invTfTransform != 'undefined') {
-                var pose = new ROSLIB.Pose(message.objects[i].pose.pose.pose);
+                var pose2 = new ROSLIB.Pose(pose);
                 console.log('normal pose:');
-                console.log(pose);
-                var transPos = pose.clone();
+                console.log(pose.position);
+                console.log(pose2);
+                var transPos = pose2.clone();
                 transPos.applyTransform(tfTransform);
                 console.log('transformed:');
                 console.log(transPos);
-
-                //var invTransPos = transPos.clone();
-                //invTransPos.applyTransform(invTfTransform);
-                //console.log('inverse transformed:');
-                //console.log(invTransPos);
               }
 
               element = {
                 name : result.information.name,
-                pos : position,
+                pos : pose.position,
                 radius : radius,
                 key : key,
                 header : result.header,
@@ -104,7 +100,7 @@
             };
           };
 
-          objectInfoClient.callService(request, push_name(message.objects[i].pose.pose.pose.position, radius, message.objects[i].type.key));
+          objectInfoClient.callService(request, push_name(message.objects[i].pose.pose.pose, radius, message.objects[i].type.key));
           
         } else {
           console.log('No valid projection matrix yet!');
@@ -148,10 +144,9 @@
 
   var tfTransform, invTfTransform;
   tfClient.subscribe('/camera_rgb_optical_frame', function(transformMsg) {
-    //console.log(transformMsg);
+
     tfTransform = new ROSLIB.Transform(transformMsg);
-    //console.log('tfTransform:');
-    //console.log(tfTransform);
+    
     // from InteractiveMarkerHandle.js
     invTfTransform = this.tfTransform.clone();
     invTfTransform.rotation.invert();
@@ -159,17 +154,17 @@
     invTfTransform.translation.x *= -1;
     invTfTransform.translation.y *= -1;
     invTfTransform.translation.z *= -1;
-    //console.log('invTfTransform:');
-    //console.log(invTfTransform);
 
-    /*console.log('Will now redraw!!!!!!!!!!!!!!');
+    console.log('Will now redraw!!!!!!!!!!!!!!');
     stage.removeAllChildren();
     elements.forEach(function(element) {
-      element.pos = element.worldPose;
-      element.worldPose.applyTransform(invTfTransform);
-
+      var new_pose = element.worldPose.clone();
+      new_pose.applyTransform(invTfTransform);
+      element.pos = new_pose.position;
+      console.log('new pose:');
+      console.log(element.pos);
       drawObject(element);
-    })*/
+    })
   })
 
   cameraInfoListener.subscribe(function(message) {
@@ -245,7 +240,7 @@
 
     ptuJointStateListener.subscribe(function(message) {
       ptuJointStateListener.unsubscribe();
-      console.log('ptu click');
+      
       var panIndex = -1;
       var tiltIndex = -1;
 
