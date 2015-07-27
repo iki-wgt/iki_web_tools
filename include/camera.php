@@ -50,8 +50,8 @@
 
     var circle = new createjs.Shape();
     circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(0, 0, object.radius);
-    circle.addEventListener("click", handleClick(object));
     
+    container.addEventListener("click", handleClick(object));
     container.addChild(circle);
     
     stage.update();
@@ -163,13 +163,12 @@
       new_pose.applyTransform(invTfTransform);
       element.pos = new_pose.position;
 
-      if (typeof element.circle != 'undefined' && typeof element.text != 'undefined') {
+      if (typeof element.container != 'undefined') {
         var coords = projectPoint(element.pos, projectionMatrix);
         element.container.x = coords[0];
         element.container.y = coords[1];
       }
     })
-
     stage.update();
   })
 
