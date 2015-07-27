@@ -36,20 +36,24 @@
 
     var coords = projectPoint(object.pos, projectionMatrix);
 
-    var circle = new createjs.Shape();
-    circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(coords[0], coords[1], object.radius);
-    circle.addEventListener("click", handleClick(object));
-
-    stage.addChild(circle);
-    object.circle = circle;
+    var container = new createjs.Container();
+    container.x = coords[0];
+    container.y = coords[1];
+    stage.addChild(container);
+    object.container = container;
 
     var text = new createjs.Text(object.name, "30px Arial", "rgba(255, 255, 255, 1.0)");
     text.textAlign = "center";
     text.textBaseline = 'top';
-    text.x = coords[0];
-    text.y = coords[1] + object.radius;
-    stage.addChild(text);
-    object.text = text;
+    text.y = object.radius;
+    container.addChild(text);
+
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("rgba(255, 255, 255, 0.5)").drawCircle(0, 0, object.radius);
+    circle.addEventListener("click", handleClick(object));
+    
+    container.addChild(circle);
+    
     stage.update();
   }
 
@@ -90,8 +94,7 @@
                 key : key,
                 header : result.header,
                 worldPose : transPos,
-                circle : {},
-                text : {}
+                container : {}
               }
 
               elements.push(element);
@@ -155,8 +158,6 @@
     invTfTransform.translation.y *= -1;
     invTfTransform.translation.z *= -1;
 
-    console.log('Will now redraw!!!!!!!!!!!!!!');
-    //stage.removeAllChildren();
     elements.forEach(function(element) {
       var new_pose = element.worldPose.clone();
       new_pose.applyTransform(invTfTransform);
@@ -164,15 +165,12 @@
 
       if (typeof element.circle != 'undefined' && typeof element.text != 'undefined') {
         var coords = projectPoint(element.pos, projectionMatrix);
-        element.circle.x = coords[0];
-        element.circle.y = coords[1];
-        element.text.x = coords[0];
-        element.text.y = coords[1] + element.radius;
+        element.container.x = coords[0];
+        element.container.y = coords[1];
       }
-      //drawObject(element);
     })
 
-    stage.update;
+    stage.update();
   })
 
   cameraInfoListener.subscribe(function(message) {
