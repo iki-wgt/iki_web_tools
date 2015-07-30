@@ -50,13 +50,13 @@
 
 			var navClient = new ROSLIB.ActionClient({
 					ros : ros,
-					serverName : '/navigation_position_db_server/goto_position',
+					serverName : 'marvin/navigation_position_db_server/goto_position',
 					actionName : 'marvin_navigation_tools/GotoPositionAction'
 			});
 
 			var navSaveClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : '/navigation_position_db_server/save_position',
+				serverName : 'marvin/navigation_position_db_server/save_position',
 				actionName : 'marvin_navigation_tools/SavePositionAction'
 			});
 
