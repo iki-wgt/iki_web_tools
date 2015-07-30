@@ -1,5 +1,8 @@
 
 function ajaxload(content){
+	if (typeof objectListener != 'undefined') {
+		objectListener.unsubscribe();
+	}
 	$("#content").load("include/"+content+".php");
 }
 
