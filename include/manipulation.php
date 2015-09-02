@@ -34,8 +34,8 @@
 
 		$savedPositions = array(
 								array("Carry","manip","carry"),
-								array("Home","manip","home"),
-								array("Give","manip","give"),
+								array("Carry Safe","manip","carry_save"),
+								array("out of sight","manip","out_of_sight_save"),
 							);
 		
 		function buildPredefined($savedPositions){

@@ -44,42 +44,42 @@
 			});
 			var ttsClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : '/TTS',
+				serverName : 'TTS',
 				actionName : 'cerevoice_tts_msgs/TtsAction'
 			});
 
 			var navClient = new ROSLIB.ActionClient({
 					ros : ros,
-					serverName : 'marvin/navigation_position_db_server/goto_position',
+					serverName : 'navigation_position_db_server/goto_position',
 					actionName : 'marvin_navigation_tools/GotoPositionAction'
 			});
 
 			var navSaveClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : 'marvin/navigation_position_db_server/save_position',
+				serverName : 'navigation_position_db_server/save_position',
 				actionName : 'marvin_navigation_tools/SavePositionAction'
 			});
 
 			var gripperClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : '/jaco_arm_driver/gripper_action',
+				serverName : 'jaco_arm_driver/gripper_action',
 				actionName : 'control_msgs/GripperCommandAction'
 			});
 
 			var manipulationClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : '/marvin_pose_db_action/goto_position',
-				actionName : 'marvin_manipulation/GotoPoseAction'
+				serverName : 'arm_posture_action_server/goto_arm_posture',
+				actionName : 'marvin_manipulation/GotoArmPostureAction'
 			});
 
 			var manipulationSaveClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : '/marvin_pose_db_action/save_position',
-				actionName : 'marvin_manipulation/SavePoseAction'
+				serverName : 'arm_posture_action_server/save_arm_posture',
+				actionName : 'marvin_manipulation/SaveArmPostureAction'
 			});
 			var octomapClient = new ROSLIB.Service({
 		       ros : ros,
-		       name : '/clear_octomap',
+		       name : 'clear_octomap',
 		       serviceType : 'std_srvs/Empty'
 			});
 		 </script>
