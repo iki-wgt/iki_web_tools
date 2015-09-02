@@ -36,7 +36,8 @@
     var gridClient = new ROS3D.OccupancyGridClient({
       ros : ros,
       tfClient : tfClient,
-      rootObject : viewer.scene
+      rootObject : viewer.scene,
+      topic : 'map'
     });
 
     gridClient.on('change', function() {
@@ -47,7 +48,7 @@
     var imClientPTU = new ROS3D.InteractiveMarkerClient({
       ros : ros,
       tfClient : tfClient,
-      topic : '/ptu_interactive_marker',
+      topic : 'ptu_interactive_marker',
       camera : viewer.camera,
       rootObject : viewer.selectableObjects
     });
@@ -56,7 +57,7 @@
     var imClientMPO = new ROS3D.InteractiveMarkerClient({
       ros : ros,
       tfClient : tfClient,
-      topic : '/mpo700_interactive_teleop',
+      topic : 'mpo700_interactive_teleop',
       camera : viewer.camera,
       rootObject : viewer.selectableObjects
     });
@@ -64,7 +65,7 @@
     var imClientObject = new ROS3D.InteractiveMarkerClient({
       ros : ros,
       tfClient : tfClient,
-      topic : '/interactive_object_markers',
+      topic : 'interactive_object_markers',
       camera : viewer.camera,
       rootObject : viewer.selectableObjects,
       menuFontSize : '2em',
