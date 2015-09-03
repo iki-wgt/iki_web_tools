@@ -16,6 +16,7 @@
     // Create the main viewer.
   var viewer = new ROS2D.Viewer({
     divID : 'map',
+    //topic : 'map_metadata',
     width : 992,
     height : 544
   });
