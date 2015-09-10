@@ -1643,7 +1643,8 @@ function TFClient(options) {
 
   // Create an Action client
   this.actionClient = this.ros.ActionClient({
-    serverName : '/tf2_web_republisher',
+	  //changed by BS@02.09.15 check if better solution possible
+    serverName : 'tf2_web_republisher',
     actionName : 'tf2_web_republisher/TFSubscriptionAction'
   });
 

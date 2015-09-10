@@ -68,14 +68,14 @@
 
 			var manipulationClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : 'marvin_pose_db_action/goto_position',
-				actionName : 'marvin_manipulation/GotoPoseAction'
+				serverName : 'arm_posture_action_server/goto_arm_posture',
+				actionName : 'marvin_manipulation/GotoArmPostureAction'
 			});
 
 			var manipulationSaveClient = new ROSLIB.ActionClient({
 				ros : ros,
-				serverName : 'marvin_pose_db_action/save_position',
-				actionName : 'marvin_manipulation/SavePoseAction'
+				serverName : 'arm_posture_action_server/save_arm_posture',
+				actionName : 'marvin_manipulation/SaveArmPostureAction'
 			});
 			var octomapClient = new ROSLIB.Service({
 		       ros : ros,

@@ -114,25 +114,25 @@
 
   var objectInfoClient = new ROSLIB.Service({
     ros : ros,
-    name : '/get_object_info',
+    name : 'get_object_info',
     serviceType : 'object_recognition_msgs/GetObjectInformation'
   });
 
   var desiredObjPub = new ROSLIB.Topic({
     ros : ros,
-    name : '/desired_object',
+    name : 'desired_object',
     messageType : 'std_msgs/String'
   });
   
   var cameraInfoListener = new ROSLIB.Topic({
     ros : ros,
-    name : '/camera/rgb/camera_info',
+    name : 'camera/rgb/camera_info',
     messageType : 'sensor_msgs/CameraInfo'
   });
 
   var objectListener = new ROSLIB.Topic({
     ros : ros,
-    name : '/recognized_object_array',
+    name : 'recognized_object_array',
     messageType : 'object_recognition_msgs/RecognizedObjectArray',
     queue_length : 1
   });
@@ -146,7 +146,7 @@
   });
 
   var tfTransform, invTfTransform;
-  tfClient.subscribe('/camera_rgb_optical_frame', function(transformMsg) {
+  tfClient.subscribe('camera_rgb_optical_frame', function(transformMsg) {
 
     tfTransform = new ROSLIB.Transform(transformMsg);
     
@@ -184,7 +184,7 @@
   function detectObjects() {
     var orClient = new ROSLIB.ActionClient({
       ros : ros,
-      serverName : '/recognize_objects',
+      serverName : 'recognize_objects',
       actionName : 'object_recognition_msgs/ObjectRecognitionAction'
     });
     console.log('clicked button');
@@ -233,13 +233,13 @@
   function movePTU(direction) {
     var ptuJointStateListener = new ROSLIB.Topic({
       ros : ros,
-      name : '/ptu/joint_states',
+      name : 'ptu/joint_states',
       messageType : 'sensor_msgs/JointState'
     });
 
     var ptuCmdPublisher = new ROSLIB.Topic({
       ros : ros,
-      name : '/ptu/cmd',
+      name : 'ptu/cmd',
       messageType : 'sensor_msgs/JointState'
     });
 
@@ -299,7 +299,7 @@
   <img src="img/arrow_right.png" />
 </div>
 <div style="position: absolute; top: 80px; left: 80px">
-  <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=/camera/rgb/image_rect_color&type=mjpeg"></img></div>
+  <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
   <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
 </div>
 <div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
