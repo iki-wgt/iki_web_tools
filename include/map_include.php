@@ -30,7 +30,9 @@
     ros : ros,
     rootObject : viewer.scene,
     viewer : viewer,
-    withOrientation : true
+    withOrientation : true,
+    topic : '/marvin/map',
+    serverName : '/marvin/move_base'
   });
 
   function cancel() {

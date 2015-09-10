@@ -48,7 +48,7 @@
     var imClientPTU = new ROS3D.InteractiveMarkerClient({
       ros : ros,
       tfClient : tfClient,
-      topic : 'ptu_interactive_marker',
+      topic : 'ptu/ptu_interactive_marker',
       camera : viewer.camera,
       rootObject : viewer.selectableObjects
     });
