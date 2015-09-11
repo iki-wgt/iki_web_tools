@@ -88,7 +88,6 @@ NAV2D.Navigator = function(options) {
   var actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
   var withOrientation = options.withOrientation || false;
   this.rootObject = options.rootObject || new createjs.Container();
-  var currentGoal;
 
   // setup the actionlib client
   var actionClient = new ROSLIB.ActionClient({
@@ -116,7 +115,6 @@ NAV2D.Navigator = function(options) {
       }
     });
     goal.send();
-    that.currentGoal = goal;
 
     // create a marker for the goal
     var goalMarker = new ROS2D.NavigationArrow({
@@ -135,15 +133,6 @@ NAV2D.Navigator = function(options) {
     goal.on('result', function() {
       that.rootObject.removeChild(goalMarker);
     });
-  }
-
-  this.cancelGoal = function () {
-    if (typeof that.currentGoal !== "undefined") {
-      console.log('currentGoal: ' + that.currentGoal);
-      that.currentGoal.cancel();
-    }
-    else
-      console.log('undefined');
   }
 
   // get a handle to the stage
@@ -169,7 +158,7 @@ NAV2D.Navigator = function(options) {
   // setup a listener for the robot pose
   var poseListener = new ROSLIB.Topic({
     ros : ros,
-    name : '/robot_pose',
+    name : '/marvin/robot_pose',
     messageType : 'geometry_msgs/Pose',
     throttle_rate : 100
   });
