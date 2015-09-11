@@ -32,7 +32,8 @@
     viewer : viewer,
     withOrientation : true,
     topic : '/marvin/map',
-    serverName : '/marvin/move_base'
+    serverName : '/marvin/move_base',
+    robot_pose : '/marvin/robot_pose'
   });
 
   function cancel() {
