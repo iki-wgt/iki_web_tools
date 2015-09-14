@@ -20,7 +20,8 @@
       angularThres : 0.01,
       transThres : 0.01,
       rate : 10.0,
-      fixedFrame: 'odom_combined'
+      fixedFrame: 'odom_combined',
+      serverName : 'tf2_web_republisher'
     });
 
     new ROS3D.UrdfClient({
@@ -70,6 +71,20 @@
       rootObject : viewer.selectableObjects,
       menuFontSize : '2em',
       path : 'http://192.168.5.2/'
+    });
+
+    var laserClient = new ROS3D.LaserScan({
+      ros : ros,
+      topic : 'scan_front',
+      tfClient : tfClient,
+      rootObject : viewer.scene,
+    });
+
+    var laserClientRear = new ROS3D.LaserScan({
+      ros : ros,
+      topic : 'scan_rear',
+      tfClient : tfClient,
+      rootObject : viewer.scene,
     });
 
     // Setup Kinect DepthCloud stream
