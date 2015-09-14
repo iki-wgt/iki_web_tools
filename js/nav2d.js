@@ -169,7 +169,7 @@ NAV2D.Navigator = function(options) {
   // setup a listener for the robot pose
   var poseListener = new ROSLIB.Topic({
     ros : ros,
-    name : '/robot_pose',
+    name : 'robot_pose',
     messageType : 'geometry_msgs/Pose',
     throttle_rate : 100
   });
