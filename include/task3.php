@@ -95,6 +95,15 @@
       rootObject : viewer.scene
     });
 
+    var poseArrayClient = new ROS3D.PoseArray({
+      ros : ros,
+      topic : 'particlecloud',
+      tfClient : tfClient,
+      rootObject : viewer.scene,
+      length : 0.2,
+      color : 0xff0000
+    });
+
     // Setup Kinect DepthCloud stream
     /*depthCloud = new ROS3D.DepthCloud({
       url : 'http://192.168.5.2:8080/stream?topic=/depthcloud_encoded&type=vp8&bitrate=250000&quality=best',
