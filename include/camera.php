@@ -61,7 +61,7 @@
     // clear everything
     stage.removeAllChildren();
     elements = [];
-    console.log('In object callback');
+    
     var i;
     for (i = 0; i < message.objects.length; i++) {
       if (message.objects[i].type.key != 'table') {
@@ -142,7 +142,8 @@
     angularThres : 0.01,
     transThres : 0.01,
     rate : 10.0,
-    fixedFrame: 'odom_combined'
+    fixedFrame: 'odom_combined',
+    serverName : 'tf2_web_republisher'
   });
 
   var tfTransform, invTfTransform;
