@@ -1,4 +1,5 @@
 
+
 <script type="text/javascript" type="text/javascript">
   $(document).ready(function(){
   //function init() {
@@ -77,14 +78,21 @@
       ros : ros,
       topic : 'scan_front',
       tfClient : tfClient,
-      rootObject : viewer.scene,
+      rootObject : viewer.scene
     });
 
     var laserClientRear = new ROS3D.LaserScan({
       ros : ros,
       topic : 'scan_rear',
       tfClient : tfClient,
-      rootObject : viewer.scene,
+      rootObject : viewer.scene
+    });
+
+    var pathClient = new ROS3D.Path({
+      ros : ros,
+      topic : 'move_base/NavfnROS/plan',
+      tfClient : tfClient,
+      rootObject : viewer.scene
     });
 
     // Setup Kinect DepthCloud stream
