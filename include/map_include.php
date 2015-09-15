@@ -32,7 +32,7 @@
     withOrientation : true,
     topic : 'map',
     serverName : 'move_base',
-    robot_pose : 'robot_pose'
+    robot_pose : 'robot_pose',
   });
 
   function cancel() {
@@ -85,4 +85,23 @@
 
         zoomView.startZoom(mousePos.x, mousePos.y);
       }, false);
+
+  var path = new ROS2D.PathShape({
+    strokeColor : createjs.Graphics.getRGB(255, 0, 0),
+    strokeSize : 0.1
+  });
+
+  viewer.scene.addChild(path);
+
+  var rosTopic = new ROSLIB.Topic({
+      ros : ros,
+      name : 'move_base/NavfnROS/plan',
+      messageType : 'nav_msgs/Path'
+  });
+
+  rosTopic.subscribe(function(message) {
+    if(message !== null && typeof message !== 'undefined' && typeof message.poses !== 'undefined' && message.poses.length > 0) {
+      path.setPath(message);
+    }
+  });
 </script>
