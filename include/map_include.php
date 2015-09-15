@@ -16,7 +16,6 @@
     // Create the main viewer.
   var viewer = new ROS2D.Viewer({
     divID : 'map',
-    //topic : 'map_metadata',
     width : 992,
     height : 544
   });
@@ -31,9 +30,9 @@
     rootObject : viewer.scene,
     viewer : viewer,
     withOrientation : true,
-    topic : '/marvin/map',
-    serverName : '/marvin/move_base',
-    robot_pose : '/marvin/robot_pose'
+    topic : 'map',
+    serverName : 'move_base',
+    robot_pose : 'robot_pose'
   });
 
   function cancel() {
