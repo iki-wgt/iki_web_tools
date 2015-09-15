@@ -138,13 +138,13 @@ NAV2D.Navigator = function(options) {
   }
 
   this.cancelGoal = function () {
-    if (typeof that.currentGoal !== "undefined") {
+    if (typeof that.currentGoal !== 'undefined') {
       console.log('currentGoal: ' + that.currentGoal);
       that.currentGoal.cancel();
     }
     else
       console.log('undefined');
-  }
+  };
 
   // get a handle to the stage
   var stage;
