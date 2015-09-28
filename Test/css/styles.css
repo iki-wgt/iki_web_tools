@@ -11,7 +11,7 @@ author: bootply.com
 
 html,body {
 	height:100%;
-    background:center no-repeat fixed url('../img/bg.png');
+    background:center no-repeat fixed url('../img/bg.jpg');
     background-size: cover;
 }
 
