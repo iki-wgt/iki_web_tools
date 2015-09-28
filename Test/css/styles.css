@@ -43,6 +43,7 @@ section {
 	padding-top:120px;  
     padding-bottom:50px; 
     min-height:calc(100% - 1px);
+	 background:center no-repeat fixed url('../img/bg.jpg');
 }
 
 .v-center {
