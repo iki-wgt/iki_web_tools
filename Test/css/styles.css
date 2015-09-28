@@ -40,7 +40,7 @@ html,body {
 }
 
 section {
-	padding-top:300px;  
+	padding-top:120px;  
     padding-bottom:50px; 
     min-height:calc(100% - 1px);
 }
@@ -61,6 +61,7 @@ a.list-group-item.active,[class*='-info'] {
   
 #section1 {
 	
+	padding-top:250px;
     color:#FB6715;
 }
   
