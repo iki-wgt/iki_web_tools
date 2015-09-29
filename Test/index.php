@@ -22,6 +22,7 @@
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
 		
 		
 		<script src="js/modernizr.custom.js"></script>
