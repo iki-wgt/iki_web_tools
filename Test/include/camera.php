@@ -287,7 +287,7 @@
 </div>
 
 	<div>
-		<span class="glyphicon glyphicon-triangle-top" aria-hidden="true" onclick="movePTU('up')"></span>
+		<span class="glyphicon glyphicon-triangle-top btn-lg" aria-hidden="true" onclick="movePTU('up')"></span>
 		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true" onclick="movePTU('left')"></span>
 		<span class="glyphicon glyphicon-triangle-right" aria-hidden="true" onclick="movePTU('right')"></span>
 		<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" onclick="movePTU('down')"></span>
