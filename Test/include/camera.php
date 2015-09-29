@@ -290,9 +290,9 @@
 </script>
 
 <div>
-<div style="position: absolute; left: 80px" onclick="movePTU('up')">
-  <img src="img/arrow_up.png" />
-</div>
+
+  <span class="glyphicon glyphicon-search" aria-hidden="true" onclick="movePTU('up')"></span>
+
 <div style="position: absolute; top: 80px" onclick="movePTU('left')">
   <img src="img/arrow_left.png" />
 </div>
