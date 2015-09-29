@@ -292,7 +292,7 @@
 <div>
 	<div style="position: absolute; top: 80px; left: 80px">
   		<div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
-  		<div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
+  		<div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="480" height="320"></canvas></div>
 	</div>
 	<div>
 		<span class="glyphicon glyphicon-triangle-top" aria-hidden="true" onclick="movePTU('up')"></span>
