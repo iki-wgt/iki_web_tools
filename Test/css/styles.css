@@ -11,7 +11,7 @@ author: bootply.com
 
 html,body {
 	height:100%;
-    background:center no-repeat fixed url('../img/bg.jpg');
+    background:center no-repeat scroll url('../img/bg.jpg');
     background-size: cover;
 }
 
@@ -43,7 +43,7 @@ section {
 	padding-top:120px;  
     padding-bottom:50px; 
     min-height:calc(100% - 1px);
-	 background:center no-repeat fixed url('../img/bg.jpg');
+	background:center no-repeat scroll url('../img/bg.jpg');
 }
 
 .v-center {
