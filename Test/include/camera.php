@@ -1,3 +1,13 @@
+<style type="text/css">
+  .btn-xlarge {
+    padding: 48px 68px;
+    font-size: 62px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 18px;
+     -moz-border-radius: 18px;
+          border-radius: 18px;
+  }
+</style>
 <script type="text/javascript" type="text/javascript">
   var projectionMatrix = [];
   var stage = new createjs.Stage("myCanvas");
@@ -280,19 +290,24 @@
 </script>
 
 <div>
-	<div style="position: absolute; top: 80px; left: 80px">
-  		<div style="z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
-  		<div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
-	</div>
+<div style="position: absolute; left: 80px" onclick="movePTU('up')">
+  <img src="img/arrow_up.png" />
+</div>
+<div style="position: absolute; top: 80px" onclick="movePTU('left')">
+  <img src="img/arrow_left.png" />
+</div>
+<div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
+  <img src="img/arrow_right.png" />
+</div>
+<div style="position: absolute; top: 80px; left: 80px">
+  <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
+  <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
+</div>
+<div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
+  <img src="img/arrow_down.png" />
+</div>
 </div>
 
-	<div>
-		<span class="glyphicon glyphicon-triangle-top" aria-hidden="true" onclick="movePTU('up')"></span>
-		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true" onclick="movePTU('left')"></span>
-		<span class="glyphicon glyphicon-triangle-right" aria-hidden="true" onclick="movePTU('right')"></span>
-		<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" onclick="movePTU('down')"></span>
-	</div>
-
 <div style="position: absolute; top: 640px">
-  <button class="btn btn-default" role="submit" onclick="detectObjects()">Objekte erkennen</button>
+  <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
 </div>
