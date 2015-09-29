@@ -291,21 +291,17 @@
 
 <div>
 
-  <span class="glyphicon glyphicon-search" aria-hidden="true" onclick="movePTU('up')"></span>
+	<span class="glyphicon glyphicon-triangle-top" aria-hidden="true" onclick="movePTU('up')"></span>
 
-<div style="position: absolute; top: 80px" onclick="movePTU('left')">
-  <img src="img/arrow_left.png" />
-</div>
-<div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
-  <img src="img/arrow_right.png" />
-</div>
+	<span class="glyphicon glyphicon-triangle-left" aria-hidden="true" onclick="movePTU('left')"></span>
+    
+    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" onclick="movePTU('right')"></span>
+
 <div style="position: absolute; top: 80px; left: 80px">
   <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
   <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
 </div>
-<div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
-  <img src="img/arrow_down.png" />
-</div>
+<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" onclick="movePTU('down')"></span>
 </div>
 
 <div style="position: absolute; top: 640px">
