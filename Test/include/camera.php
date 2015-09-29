@@ -305,5 +305,5 @@
 </div>
 
 <div style="position: absolute; top: 640px">
-  <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
+  <button class="btn btn-default" role="submit" onclick="detectObjects()">Objekte erkennen</button>
 </div>
