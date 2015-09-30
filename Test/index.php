@@ -17,6 +17,36 @@
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
 		
+        <?php
+		ini_set('error_reporting', E_ALL);
+
+		$savedTextList = array(
+				'hallo!',
+				'danke',
+				'ja',
+				'nein',
+				'kein problem.',
+				'es tut mir leid. das kenne ich noch nicht.',
+				'hallo, mein name ist marvin',
+				'wie heisst du?',
+				'das ist aber ein schöner name',
+				'ich bin ein service-roboter prototyp',
+				'darf ich dir eine tasse kaffee anbieten?',
+				'&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;',
+				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;',
+				'&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;',
+				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;. Ok jetzt aber zur&uuml;ck an die Arbeit!'
+				
+		);
+		
+		function buildPredefinedText($savedTextList){
+			$html = '';
+			foreach ($savedTextList as $text){
+					$html .= '<div class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
+			}
+			return $html;
+		}
+	?>
 		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
@@ -129,11 +159,14 @@
         <br>
 		<p class="lead">
         <div class="input-group">
-      <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
+      <input type="text" class="form-control" name="teststr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Sag es</button>
+        <button class="btn btn-default" onclick="sayAndSave()" value="Say it" type="button">Sag es</button>
       </span>
-      <?php include 'include/speech.php';?>
+      <div id="predefined">
+			<h2>Gespeicherte Vorgaben:</h2>
+			<?php echo buildPredefinedText($savedTextList); ?>
+		</div>
     </div><!-- /input-group -->
     </p>
     </div>
@@ -185,5 +218,20 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
+        <script>
+
+function keyDetect( event ){
+	if (event.keyCode == 13) {
+			event.preventDefault();
+			sayAndSave();
+		}
+}
+
+function sayAndSave() {
+    //document.getElementById("frm1").submit();
+    say(document.forms["frm1"]["teststr"].value);
+    $("#history").append('<div class="historyElement" onclick="say(\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
+}
+</script>
 	</body>
 </html>
