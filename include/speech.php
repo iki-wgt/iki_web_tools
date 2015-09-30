@@ -66,15 +66,7 @@
 	  <input type="text" size="65" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
 	  <input type="button" onclick="sayAndSave()" value="Say it" class="btn btn-default btn-xlarge">
 	</form>
-	<div>
-		<div id="history">
-			<h2>Gerade eingegeben:</h2>
-		</div>
-		<div id="predefined">
-			<h2>Gespeicherte Vorgaben:</h2>
-			<?php echo buildPredefinedText($savedTextList); ?>
-		</div>
-	</div>
+	
 </div>
 <script>
 
