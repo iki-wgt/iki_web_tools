@@ -26,6 +26,9 @@
 		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
+        
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
+<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
 		
 		<script type="text/javascript" src="js/eventemitter2.js"></script>
 		<script type="text/javascript" src="js/roslib.js"></script>
