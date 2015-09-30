@@ -17,7 +17,6 @@
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
 		
-		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		
@@ -79,110 +78,104 @@
 		 </script>
 	</head>
 	<body>
-<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
-<ul class="nav navbar-brand">
-		
-            <a href="#section1"><img src="img/top_button.png"></a>
+		<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+			<ul class="nav navbar-brand">
+    			<a href="#section1"><img src="img/top_button.png"></a>       
+			</ul>
+        </nav>
+
+        <section class="container-fluid" id="section1">
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-sm-3">
+                    <div class="row">
+                      <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section2"><img class="iconCircle" src="img/talk11.png">
+                      </a><h1>Sprache</h1></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="row">
+                      <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section3"><img class="iconCircle" src="img/compass68.png">
+                      </a><h1>Navigation</h1></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="row">
+                      <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section4"><img class="iconCircle" src="img/factory26.png">
+                      </a><h1>Hand steuern</h1></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="row">
+                      <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section5"><img class="iconCircle" src="img/security50.png">
+                      </a><h1>Kamera</h1></div>
+                    </div>
+                  </div>
+              </div><!--/row-->
+          </div><!--/container-->
+        </section>
         
-       
-      </ul>
-
-</nav>
-
-<section class="container-fluid" id="section1">
-  	
- 	
-  	<div class="container-fluid">
-      <div class="row">
-          <div class="col-sm-3">
-            <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section2"><img class="iconCircle" src="img/talk11.png">
-              </a><h1>Sprache</h1></div>
+        <section class="container-fluid" id="section2">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <h1>Was soll Marvin sagen?</h1>
+                <br>
+                <p class="lead">
+                <div class="input-group">
+              <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Sag es</button>
+              </span>
+            </div><!-- /input-group -->
+            </p>
             </div>
           </div>
-          <div class="col-sm-3">
+        </section>
+        
+        <section class="container-fluid" id="section3">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section3"><img class="iconCircle" src="img/compass68.png">
-              </a><h1>Navigation</h1></div>
-            </div>
-          </div>
-          <div class="col-sm-3">
+              <div class="col-sm-8 col-sm-offset-2 text-center">
+                <h1>Wohin soll Marvin navigieren?</h1>
+                <br>
+                <p class="lead">
+                <div class="input-group">
+              <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Navigiere</button>
+              </span>
+              </div>
+           </div>
+        </section>
+        
+        <section class="container-fluid" id="section4">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section4"><img class="iconCircle" src="img/factory26.png">
-              </a><h1>Hand steuern</h1></div>
-            </div>
-          </div>
-          <div class="col-sm-3">
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-12 col-sm-offset-1 text-center"><a href="#section2"><img class="iconCircle" src="img/factory26.png">
+                      </a><h1>Hand öffnen</h1></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section3"><img class="iconCircle" src="img/factory26.png">
+                      </a><h1>Hand schlie&szlig;en</h1></div>
+                    </div>
+                  </div>
+              </div><!--/row-->
+        </section>
+        
+        <section class="container-fluid" id="section5">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section5"><img class="iconCircle" src="img/security50.png">
-              </a><h1>Kamera</h1></div>
+              <div class="col-sm-8 col-sm-offset-2 text-center">
+              <h1>Was sieht Marvin gerade?</h1>
+              <?php include 'include/camera.php';?>
+              </div>
             </div>
-          </div>
-      </div><!--/row-->
-  </div><!--/container-->
-</section>
-
-<section class="container-fluid" id="section2">
-  <div class="row">
-  	<div class="col-sm-8 col-sm-offset-2 text-center">
-        <h1>Was soll Marvin sagen?</h1>
-        <br>
-		<p class="lead">
-        <div class="input-group">
-      <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Sag es</button>
-      </span>
-    </div><!-- /input-group -->
-    </p>
-    </div>
-  </div>
-</section>
-
-<section class="container-fluid" id="section3">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2 text-center">
-        <h1>Wohin soll Marvin navigieren?</h1>
-        <br>
-		<p class="lead">
-        <div class="input-group">
-      <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Navigiere</button>
-      </span>
-      </div>
-   </div>
-</section>
-
-<section class="container-fluid" id="section4">
-    <div class="row">
-          <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-12 col-sm-offset-1 text-center"><a href="#section2"><img class="iconCircle" src="img/factory26.png">
-              </a><h1>Hand öffnen</h1></div>
-            </div>
-          </div>
-          <div class="col-sm-5">
-            <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section3"><img class="iconCircle" src="img/factory26.png">
-              </a><h1>Hand schlie&szlig;en</h1></div>
-            </div>
-          </div>
-      </div><!--/row-->
-</section>
-
-<section class="container-fluid" id="section5">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2 text-center">
-      <h1>Was sieht Marvin gerade?</h1>
-      <?php include 'include/camera.php';?>
-      </div>
-    </div>
-</section>
-
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/scripts.js"></script>
+        </section>
+        
+            <!-- script references -->
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/scripts.js"></script>
 	</body>
 </html>
