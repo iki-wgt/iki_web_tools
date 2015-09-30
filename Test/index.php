@@ -12,10 +12,17 @@
 		<meta name="author" content="IKI" />
 		<link rel="shortcut icon" href="../favicon.ico">
 		
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<!-- Optional theme 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		-->
+	
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
+		
 		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
@@ -30,52 +37,17 @@
 		<script type="text/javascript" src="js/ros2d.js"></script>
 		<script type="text/javascript" src="js/nav2d.js"></script>
 		<script type="text/javascript" src="js/iki_robot.js"></script>
-		
-		<script type="text/javascript" type="text/javascript">
-			var ros = new ROSLIB.Ros({
-				url : 'ws://192.168.5.2:9090'
-			});
-			var ttsClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'TTS',
-				actionName : 'cerevoice_tts_msgs/TtsAction'
-			});
-
-			var navClient = new ROSLIB.ActionClient({
-					ros : ros,
-					serverName : 'navigation_position_db_server/goto_position',
-					actionName : 'marvin_navigation_tools/GotoPositionAction'
-			});
-
-			var navSaveClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'navigation_position_db_server/save_position',
-				actionName : 'marvin_navigation_tools/SavePositionAction'
-			});
-
-			var gripperClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'jaco_arm_driver/gripper_action',
-				actionName : 'control_msgs/GripperCommandAction'
-			});
-
-			var manipulationClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'arm_posture_action_server/goto_arm_posture',
-				actionName : 'marvin_manipulation/GotoArmPostureAction'
-			});
-
-			var manipulationSaveClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'arm_posture_action_server/save_arm_posture',
-				actionName : 'marvin_manipulation/SaveArmPostureAction'
-			});
-			var octomapClient = new ROSLIB.Service({
-		       ros : ros,
-		       name : 'clear_octomap',
-		       serviceType : 'std_srvs/Empty'
-			});
-		 </script>
+        <script type="text/javascript" src="js/roslib_marvin.js"></script>
+        <script type="text/javascript" src="js/roslib_marvin_speech.js"></script>
+		<?php		
+		function buildPredefinedText($savedTextList){
+			$html = '';
+			foreach ($savedTextList as $text){
+					$html .= '<div class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
+			}
+			return $html;
+		}
+	?>
 	</head>
 	<body>
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
@@ -127,13 +99,13 @@
         <h1>Was soll Marvin sagen?</h1>
         <br>
 		<p class="lead">
-        <div class="input-group">
-      <input type="text" class="form-control" name="teststr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" onclick="sayAndSave()" value="Say it" type="button">Sag es</button>
-      </span>
-    </div><!-- /input-group -->
-    </p>
+        	<div class="input-group">
+      			<input type="text" class="form-control" name="teststr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
+      			<span class="input-group-btn">
+        			<button class="btn btn-default" onclick="sayAndSave()" type="button">Sag es</button>
+				</span>
+   			</div><!-- /input-group -->
+    	</p>
     </div>
   </div>
 </section>
@@ -183,5 +155,20 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
+        <script>
+		
+			function keyDetect( event ){
+				if (event.keyCode == 13) {
+					event.preventDefault();
+					sayAndSave();
+				}
+			}
+	
+			function sayAndSave() {
+				//document.getElementById("frm1").submit();
+				say(document.forms["frm1"]["teststr"].value);
+				$("#history").append('<div class="historyElement" onclick="say(\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
+			}
+		</script>
 	</body>
 </html>
