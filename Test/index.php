@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
 		
+		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		
@@ -128,9 +129,9 @@
         <br>
 		<p class="lead">
         <div class="input-group">
-      <input type="text" class="form-control" name="teststr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
+      <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
       <span class="input-group-btn">
-        <button class="btn btn-default" onclick="sayAndSave()" value="Say it" type="button">Sag es</button>
+        <button class="btn btn-default" type="button">Sag es</button>
       </span>
     </div><!-- /input-group -->
     </p>
@@ -174,7 +175,7 @@
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2 text-center">
       <h1>Was sieht Marvin gerade?</h1>
-      
+      <?php include 'include/camera.php';?>
       </div>
     </div>
 </section>
@@ -183,7 +184,5 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
-        <script>
-</script>
 	</body>
 </html>
