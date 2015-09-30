@@ -106,6 +106,16 @@
 				</span>
    			</div><!-- /input-group -->
     	</p>
+        <div>
+		<div id="history">
+			<h2>Gerade eingegeben:</h2>
+		</div>
+		<div id="predefined">
+			<h2>Gespeicherte Vorgaben:</h2>
+			<?php echo buildPredefinedText($savedTextList); ?>
+		</div>
+	</div>
+</div>
     </div>
   </div>
 </section>
