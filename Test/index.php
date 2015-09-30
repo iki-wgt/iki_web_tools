@@ -26,10 +26,8 @@
 		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
-        
-        <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
-<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
 		
+		<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
 		<script type="text/javascript" src="js/eventemitter2.js"></script>
 		<script type="text/javascript" src="js/roslib.js"></script>
 		<script type="text/javascript" src="js/three.js"></script>
@@ -42,6 +40,51 @@
 		<script type="text/javascript" src="js/iki_robot.js"></script>
         <script type="text/javascript" src="js/roslib_marvin.js"></script>
         <script type="text/javascript" src="js/roslib_marvin_speech.js"></script>
+        <script type="text/javascript" type="text/javascript">
+			var ros = new ROSLIB.Ros({
+				url : 'ws://192.168.5.2:9090'
+			});
+			var ttsClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : 'TTS',
+				actionName : 'cerevoice_tts_msgs/TtsAction'
+			});
+
+			var navClient = new ROSLIB.ActionClient({
+					ros : ros,
+					serverName : 'navigation_position_db_server/goto_position',
+					actionName : 'marvin_navigation_tools/GotoPositionAction'
+			});
+
+			var navSaveClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : 'navigation_position_db_server/save_position',
+				actionName : 'marvin_navigation_tools/SavePositionAction'
+			});
+
+			var gripperClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : 'jaco_arm_driver/gripper_action',
+				actionName : 'control_msgs/GripperCommandAction'
+			});
+
+			var manipulationClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : 'arm_posture_action_server/goto_arm_posture',
+				actionName : 'marvin_manipulation/GotoArmPostureAction'
+			});
+
+			var manipulationSaveClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : 'arm_posture_action_server/save_arm_posture',
+				actionName : 'marvin_manipulation/SaveArmPostureAction'
+			});
+			var octomapClient = new ROSLIB.Service({
+		       ros : ros,
+		       name : 'clear_octomap',
+		       serviceType : 'std_srvs/Empty'
+			});
+		 </script>
 
 	</head>
 	<body>
