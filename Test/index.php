@@ -40,7 +40,51 @@
 		<script type="text/javascript" src="js/iki_robot.js"></script>
         <script type="text/javascript" src="js/roslib_marvin.js"></script>
         <script type="text/javascript" src="js/roslib_marvin_speech.js"></script>
-        
+        <script type="text/javascript" type="text/javascript">
+  var ros = new ROSLIB.Ros({
+    url : 'ws://192.168.5.2:9090'
+  });
+
+  var ttsClient = new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/TTS',
+    actionName : 'cerevoice_tts_msgs/TtsAction'
+  });
+
+  ttsClient.on('status', function(status) {
+    console.log('action client status: ' + status.status + ' ' + status.text);
+  });
+
+  function say(text_input) {
+    console.log('Saying: ' + text_input);
+    var goal = new ROSLIB.Goal({
+      actionClient : ttsClient,
+      goalMessage : {
+        voice : 'Alex',
+        text : text_input
+      }
+    });
+
+    goal.on('result', function(result) {
+      console.log('finished');
+    });
+
+    goal.send();
+  }
+
+  ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+  });
+
+  ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+  });
+
+  ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+  });
+
+</script>
 
 	</head>
 	<body>
