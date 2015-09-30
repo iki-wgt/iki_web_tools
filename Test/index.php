@@ -133,7 +133,7 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">Sag es</button>
       </span>
-      <?php include 'include/camera.php';?>
+      <?php include 'include/speech.php';?>
     </div><!-- /input-group -->
     </p>
     </div>
