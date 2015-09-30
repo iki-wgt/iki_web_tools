@@ -12,15 +12,8 @@
 		<meta name="author" content="IKI" />
 		<link rel="shortcut icon" href="../favicon.ico">
 		
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-		<!-- Optional theme 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-		-->
-		
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
 		
@@ -140,6 +133,7 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">Sag es</button>
       </span>
+      <?php include 'include/camera.php';?>
     </div><!-- /input-group -->
     </p>
     </div>
