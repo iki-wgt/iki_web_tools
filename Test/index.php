@@ -42,36 +42,6 @@
 		<script type="text/javascript" src="js/iki_robot.js"></script>
         <script type="text/javascript" src="js/roslib_marvin.js"></script>
         <script type="text/javascript" src="js/roslib_marvin_speech.js"></script>
-		<?php
-		ini_set('error_reporting', E_ALL);
-
-		$savedTextList = array(
-				'hallo!',
-				'danke',
-				'ja',
-				'nein',
-				'kein problem.',
-				'es tut mir leid. das kenne ich noch nicht.',
-				'hallo, mein name ist marvin',
-				'wie heisst du?',
-				'das ist aber ein schöner name',
-				'ich bin ein service-roboter prototyp',
-				'darf ich dir eine tasse kaffee anbieten?',
-				'&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;',
-				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;',
-				'&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;',
-				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;. Ok jetzt aber zur&uuml;ck an die Arbeit!'
-				
-		);
-		
-		function buildPredefinedText($savedTextList){
-			$html = '';
-			foreach ($savedTextList as $text){
-					$html .= '<div class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
-			}
-			return $html;
-		}
-	?>
 
 	</head>
 	<body>
@@ -131,17 +101,7 @@
 				</span>
    			</div><!-- /input-group -->
     	</p>
-        <div>
-		<div id="history">
-			<h2>Gerade eingegeben:</h2>
-		</div>
-		<div id="predefined">
-			<h2>Gespeicherte Vorgaben:</h2>
-			<?php echo buildPredefinedText($savedTextList); ?>
-		</div>
 	</div>
-</div>
-    </div>
   </div>
 </section>
 
