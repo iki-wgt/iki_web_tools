@@ -42,7 +42,7 @@
 								array("Sofa","goto","sofa"),
 								array("Shelf","goto","shelf"),
 								array("Speakpos","goto","speakpos"),
-								array("Charging","goto","chargepos"),
+								array("Charging","goto","chargingstation"),
 								array("Change Battery","goto","changebatterypos"),
 							);
 		

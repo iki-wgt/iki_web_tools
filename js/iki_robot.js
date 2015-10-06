@@ -49,6 +49,7 @@ function nav_goto(place_goal){
 		goalMessage : {
 		  room_name : 'lab',
 		  pos_name : place_goal
+		  mode : ''
 		}
 	});
 	goal.on('result', function(result) {
