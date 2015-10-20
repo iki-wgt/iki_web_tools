@@ -77,26 +77,26 @@
       <div class="row">
           <div class="col-sm-3">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section2"><img class="iconCircle" src="img/talk11.png">
-              </a><h1>Sprache</h1></div>
+              <a href="#section2"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/talk11.png">
+              <h1>Sprache</h1></div></a>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section3"><img class="iconCircle" src="img/compass68.png">
-              </a><h1>Navigation</h1></div>
+              <a href="#section3"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/compass68.png">
+              <h1>Navigation</h1></div></a>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section4"><img class="iconCircle" src="img/factory26.png">
-              </a><h1>Hand steuern</h1></div>
+              <a href="#section4"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
+              <h1>Hand steuern</h1></div></a>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section5"><img class="iconCircle" src="img/security50.png">
-              </a><h1>Kamera</h1></div>
+              <a href="#section5"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/security50.png">
+              <h1>Kamera</h1></div></a>
             </div>
           </div>
       </div><!--/row-->
