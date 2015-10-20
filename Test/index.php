@@ -38,8 +38,6 @@
 		<script type="text/javascript" src="js/ros2d.js"></script>
 		<script type="text/javascript" src="js/nav2d.js"></script>
 		<script type="text/javascript" src="js/iki_robot.js"></script>
-        <script type="text/javascript" src="js/roslib_marvin.js"></script>
-        <script type="text/javascript" src="js/roslib_marvin_speech.js"></script>
 
 	</head>
 	<body>
