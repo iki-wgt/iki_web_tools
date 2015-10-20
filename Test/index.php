@@ -27,7 +27,6 @@
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/jquery-2.1.3.min.js"></script>
 		
-		<script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
 		<script type="text/javascript" src="js/eventemitter2.js"></script>
 		<script type="text/javascript" src="js/roslib.js"></script>
 		<script type="text/javascript" src="js/three.js"></script>
@@ -38,6 +37,52 @@
 		<script type="text/javascript" src="js/ros2d.js"></script>
 		<script type="text/javascript" src="js/nav2d.js"></script>
 		<script type="text/javascript" src="js/iki_robot.js"></script>
+
+    <script type="text/javascript" type="text/javascript">
+  var ros = new ROSLIB.Ros({
+    url : 'ws://192.168.5.2:9090'
+  });
+
+  var ttsClient = new ROSLIB.ActionClient({
+    ros : ros,
+    serverName : '/TTS',
+    actionName : 'cerevoice_tts_msgs/TtsAction'
+  });
+
+  ttsClient.on('status', function(status) {
+    console.log('action client status: ' + status.status + ' ' + status.text);
+  });
+
+  function say(text_input) {
+    console.log('Saying: ' + text_input);
+    var goal = new ROSLIB.Goal({
+      actionClient : ttsClient,
+      goalMessage : {
+        voice : 'Alex',
+        text : text_input
+      }
+    });
+
+    goal.on('result', function(result) {
+      console.log('finished');
+    });
+
+    goal.send();
+  }
+
+  ros.on('connection', function() {
+    console.log('Connected to websocket server.');
+  });
+
+  ros.on('error', function(error) {
+    console.log('Error connecting to websocket server: ', error);
+  });
+
+  ros.on('close', function() {
+    console.log('Connection to websocket server closed.');
+  });
+
+  </script>
 
 	</head>
 	<body>
@@ -91,7 +136,7 @@
         <br>
 		<p class="lead">
         	<div class="input-group">
-      			<input type="text" class="form-control" name="teststr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
+      			<input type="text" class="form-control" name="sayStr" id="sayStr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
       			<span class="input-group-btn">
         			<button class="btn btn-default" onclick="sayAndSave()" type="button">Sag es</button>
 				</span>
@@ -157,54 +202,11 @@
 	
 			function sayAndSave() {
 				//document.getElementById("frm1").submit();
-				say(document.forms["frm1"]["teststr"].value);
-				$("#history").append('<div class="historyElement" onclick="say(\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
+				say(document.getElementById('sayStr').value);
+				$("#history").append('<div class="historyElement" onclick="say(\''
+          + document.getElementById('sayStr').value+'\')">'
+          + document.getElementById('sayStr').value+'</div>');
 			}
 		</script>
-                <script type="text/javascript" type="text/javascript">
-  var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.5.2:9090'
-  });
-
-  var ttsClient = new ROSLIB.ActionClient({
-    ros : ros,
-    serverName : '/TTS',
-    actionName : 'cerevoice_tts_msgs/TtsAction'
-  });
-
-  ttsClient.on('status', function(status) {
-    console.log('action client status: ' + status.status + ' ' + status.text);
-  });
-
-  function say(text_input) {
-    console.log('Saying: ' + text_input);
-    var goal = new ROSLIB.Goal({
-      actionClient : ttsClient,
-      goalMessage : {
-        voice : 'Alex',
-        text : text_input
-      }
-    });
-
-    goal.on('result', function(result) {
-      console.log('finished');
-    });
-
-    goal.send();
-  }
-
-  ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-  });
-
-  ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-  });
-
-  ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-  });
-
-</script>
 	</body>
 </html>
