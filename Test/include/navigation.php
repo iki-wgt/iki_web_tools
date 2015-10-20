@@ -49,7 +49,7 @@
 		function buildPredefinedTextNav($savedPositions){
 			$html = '';
 			foreach ($savedPositions as $pose){
-					$html .= '<button class="btn btn-default" onclick="execute(\''.$pose[1].'\',\''.$pose[2].'\')">'.$pose[0].'</button>';
+					$html .= '<button class="btn btn-default btn-lg" onclick="execute(\''.$pose[1].'\',\''.$pose[2].'\')">'.$pose[0].'</button>';
 			}
 			return $html;
 		}
@@ -57,10 +57,6 @@
 
 
 <div id="wrapper" style="padding:100px;">
-	<!--<form id="frm1" action="#">
-	  <input type="text" size="65" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
-	  <input type="button" onclick="SavePosition()" value="Save Position" class="btn btn-default btn-xlarge">
-	</form>-->
 	<div>
 		<div id="navHistory">
 			<h2>Gerade eingegeben:</h2>
@@ -72,9 +68,9 @@
 	</div>
 	<p class="lead">
     <div class="input-group">
-      <input type="text" class="form-control" id="navStr" placeholder="Hier bitte den Text eingeben...">
+      <input type="text" class="form-control input-lg" id="navStr" placeholder="Hier bitte den Text eingeben...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onclick="SavePosition()">Speichere aktuelle Position</button>
+        <button class="btn btn-default btn-lg" type="button" onclick="SavePosition()">Speichere aktuelle Position</button>
       </span>
     </div>
   </p>
@@ -91,7 +87,7 @@ function keyDetect( event ){
 function SavePosition() {
     var navStr = document.getElementById('navStr').value
     nav_save(navStr);
-    $("#navHistory").append('<button class="btn btn-default" onclick="nav_goto(\''+navStr+'\')">'+navStr+'</div>');
+    $("#navHistory").append('<button class="btn btn-default btn-lg" onclick="nav_goto(\''+navStr+'\')">'+navStr+'</div>');
 }
 </script>
 

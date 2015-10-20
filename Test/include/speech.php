@@ -49,7 +49,7 @@
 		function buildPredefinedText($savedTextList){
 			$html = '';
 			foreach ($savedTextList as $text){
-				  $html .= '<button class="btn btn-default" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
+				  $html .= '<button class="btn btn-default btn-lg" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
 			}
 			return $html;
 		}
@@ -59,9 +59,9 @@
 <div id="wrapper" style="padding:100px;">
 	<p class="lead">
         <div class="input-group">
-      		<input type="text" class="form-control" name="sayStr" id="sayStr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
+      		<input type="text" class="form-control input-lg" name="sayStr" id="sayStr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
       		<span class="input-group-btn">
-        		<button class="btn btn-default" onclick="sayAndSave()" type="button">Sag es</button>
+        		<button class="btn btn-default btn-lg" onclick="sayAndSave()" type="button">Sag es</button>
 				  </span>
    			</div><!-- /input-group -->
     	</p>
