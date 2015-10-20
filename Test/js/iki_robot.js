@@ -146,6 +146,17 @@ function clear_octomap(){
 	console.log('clearing octomap');
 	octomapClient.callService();
 }
+
+var scrollListener = new ROSLIB.Topic({
+    ros : ros,
+    name : '/marvin/scroll_to',
+    messageType : 'std_msgs/String'
+  });
+
+scrollListener.subscribe(function(message) {
+	console.log('Received scroll destination: ' + message.data);
+	document.getElementById(message.data).scrollIntoView();
+});
 	
 /*
 function notused(){
