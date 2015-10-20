@@ -72,6 +72,12 @@ function nav_save(place_name){
 	goal.send();
 }
 
+var gripperClient = new ROSLIB.ActionClient({
+	ros : ros,
+	serverName : 'jaco_arm_driver/gripper_action',
+	actionName : 'control_msgs/GripperCommandAction'
+});
+
 function gripper_control(position_goal){
 	console.log('control gripper: ' + position_goal);
 	
@@ -88,6 +94,7 @@ function gripper_control(position_goal){
 	goal.on('result', function(result) {
 		console.log('finished');
 	});
+	
 	goal.send();
 }
 

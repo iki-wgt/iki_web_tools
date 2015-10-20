@@ -36,7 +36,6 @@
 		<script type="text/javascript" src="js/easeljs.js"></script>
 		<script type="text/javascript" src="js/ros2d.js"></script>
 		<script type="text/javascript" src="js/nav2d.js"></script>
-		<script type="text/javascript" src="js/iki_robot.js"></script>
 
     <script type="text/javascript" type="text/javascript">
   var ros = new ROSLIB.Ros({
@@ -56,6 +55,8 @@
   });
 
   </script>
+
+  <script type="text/javascript" src="js/iki_robot.js"></script> <!-- ros has to be defined for this script -->
 
 	</head>
 	<body>
@@ -130,15 +131,15 @@
 <section class="container-fluid" id="section4">
     <div class="row">
           <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-12 col-sm-offset-1 text-center"><a href="#section2"><img class="iconCircle" src="img/factory26.png">
-              </a><h1>Hand öffnen</h1></div>
+            <div class="row" onclick="gripper_control(0.0)">
+              <div class="col-sm-12 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
+              <h1>Hand öffnen</h1></div>
             </div>
           </div>
           <div class="col-sm-5">
-            <div class="row">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><a href="#section3"><img class="iconCircle" src="img/factory26.png">
-              </a><h1>Hand schlie&szlig;en</h1></div>
+            <div class="row" onclick="gripper_control(0.7)">
+              <div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
+              <h1>Hand schlie&szlig;en</h1></div>
             </div>
           </div>
       </div><!--/row-->
