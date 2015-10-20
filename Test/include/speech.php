@@ -43,18 +43,13 @@
 				'wie heisst du?',
 				'das ist aber ein schöner name',
 				'ich bin ein service-roboter prototyp',
-				'darf ich dir eine tasse kaffee anbieten?',
-				'&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;',
-				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;',
-				'&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;',
-				'&lt;prosody pitch=\\\'1.5\\\'&gt;Ich mag Helium Luftballons.&lt;/prosody&gt;&lt;prosody pitch=\\\'0.7\\\'&gt;Ich nicht.&lt;/prosody&gt;&lt;spurt audio=\\\'g0001_026\\\'&gt;x&lt;/spurt&gt;. Ok jetzt aber zur&uuml;ck an die Arbeit!'
-				
+				'darf ich dir eine tasse kaffee anbieten?'				
 		);
 		
 		function buildPredefinedText($savedTextList){
 			$html = '';
 			foreach ($savedTextList as $text){
-					$html .= '<div class="historyElement" onclick="say(\''.$text.'\')">'.$text.'</div>';
+				  $html .= '<button class="btn btn-default" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
 			}
 			return $html;
 		}
@@ -62,21 +57,51 @@
 
 
 <div id="wrapper" style="padding:100px;">
-	<form id="frm1" action="#">
-	  <input type="text" size="65" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
-	  <input type="button" onclick="sayAndSave()" value="Say it" class="btn btn-default btn-xlarge">
-	</form>
+	<p class="lead">
+        <div class="input-group">
+      		<input type="text" class="form-control" name="sayStr" id="sayStr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
+      		<span class="input-group-btn">
+        		<button class="btn btn-default" onclick="sayAndSave()" type="button">Sag es</button>
+				  </span>
+   			</div><!-- /input-group -->
+    	</p>
 	<div>
 		<div id="history">
 			<h2>Gerade eingegeben:</h2>
 		</div>
 		<div id="predefined">
-			<h2>Gespeicherte Vorgaben:</h2>
+			<h2>Gespeicherte Vorgaben: TODO: Layout</h2>
 			<?php echo buildPredefinedText($savedTextList); ?>
 		</div>
 	</div>
 </div>
 <script>
+var ttsClient = new ROSLIB.ActionClient({
+  ros : ros,
+  serverName : '/marvin/TTS',
+  actionName : 'cerevoice_tts_msgs/TtsAction'
+});
+
+ttsClient.on('status', function(status) {
+  console.log('action client status: ' + status.status + ' ' + status.text);
+});
+
+function say(text_input) {
+  console.log('Saying: ' + text_input);
+  var goal = new ROSLIB.Goal({
+    actionClient : ttsClient,
+    goalMessage : {
+      voice : 'Alex',
+      text : text_input
+    }
+  });
+
+  goal.on('result', function(result) {
+    console.log('finished');
+  });
+
+  goal.send();
+}
 
 function keyDetect( event ){
 	if (event.keyCode == 13) {
@@ -86,9 +111,10 @@ function keyDetect( event ){
 }
 
 function sayAndSave() {
-    //document.getElementById("frm1").submit();
-    say(document.forms["frm1"]["teststr"].value);
-    $("#history").append('<div class="historyElement" onclick="say(\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
+	var text = document.getElementById('sayStr').value;
+  say(text);
+	$("#history").append('<button class="btn btn-default" onclick="say(\'' 
+		+ text + '\')" type="button">' + text + '</button>');
 }
 </script>
 

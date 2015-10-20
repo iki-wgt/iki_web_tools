@@ -43,33 +43,6 @@
     url : 'ws://192.168.5.2:9090'
   });
 
-  var ttsClient = new ROSLIB.ActionClient({
-    ros : ros,
-    serverName : '/TTS',
-    actionName : 'cerevoice_tts_msgs/TtsAction'
-  });
-
-  ttsClient.on('status', function(status) {
-    console.log('action client status: ' + status.status + ' ' + status.text);
-  });
-
-  function say(text_input) {
-    console.log('Saying: ' + text_input);
-    var goal = new ROSLIB.Goal({
-      actionClient : ttsClient,
-      goalMessage : {
-        voice : 'Alex',
-        text : text_input
-      }
-    });
-
-    goal.on('result', function(result) {
-      console.log('finished');
-    });
-
-    goal.send();
-  }
-
   ros.on('connection', function() {
     console.log('Connected to websocket server.');
   });
@@ -132,17 +105,10 @@
 <section class="container-fluid" id="section2">
   <div class="row">
   	<div class="col-sm-8 col-sm-offset-2 text-center">
-        <h1>Was soll Marvin sagen?</h1>
-        <br>
-		<p class="lead">
-        	<div class="input-group">
-      			<input type="text" class="form-control" name="sayStr" id="sayStr" onkeypress="keyDetect(event)" placeholder="Hier bitte den Text eingeben...">
-      			<span class="input-group-btn">
-        			<button class="btn btn-default" onclick="sayAndSave()" type="button">Sag es</button>
-				</span>
-   			</div><!-- /input-group -->
-    	</p>
-	</div>
+      <h1>Was soll Marvin sagen?</h1>
+      <br>
+      <?php include 'include/speech.php';?>
+	   </div>
   </div>
 </section>
 
@@ -191,22 +157,5 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>
-        <script>
-		
-			function keyDetect( event ){
-				if (event.keyCode == 13) {
-					event.preventDefault();
-					sayAndSave();
-				}
-			}
-	
-			function sayAndSave() {
-				//document.getElementById("frm1").submit();
-				say(document.getElementById('sayStr').value);
-				$("#history").append('<div class="historyElement" onclick="say(\''
-          + document.getElementById('sayStr').value+'\')">'
-          + document.getElementById('sayStr').value+'</div>');
-			}
-		</script>
 	</body>
 </html>
