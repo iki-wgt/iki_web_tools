@@ -42,6 +42,12 @@ function say(text_input) {
 	goal.send();
 }
 
+var navClient = new ROSLIB.ActionClient({
+			ros : ros,
+			serverName : 'navigation_position_db_server/goto_position',
+			actionName : 'marvin_navigation_tools/GotoPositionAction'
+	});
+
 function nav_goto(place_goal){
 	console.log('Navigate to: ' + place_goal);
 	var goal = new ROSLIB.Goal({
@@ -56,6 +62,12 @@ function nav_goto(place_goal){
 	});
 	goal.send();
 }
+
+var navSaveClient = new ROSLIB.ActionClient({
+		ros : ros,
+		serverName : 'navigation_position_db_server/save_position',
+		actionName : 'marvin_navigation_tools/SavePositionAction'
+	});
 
 function nav_save(place_name){
 	console.log('Save Landmark: ' + place_name);
@@ -94,7 +106,7 @@ function gripper_control(position_goal){
 	goal.on('result', function(result) {
 		console.log('finished');
 	});
-	
+
 	goal.send();
 }
 

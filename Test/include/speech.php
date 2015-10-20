@@ -114,7 +114,7 @@ function sayAndSave() {
 	var text = document.getElementById('sayStr').value;
   say(text);
 	$("#history").append('<button class="btn btn-default" onclick="say(\'' 
-		+ text + '\')" type="button">' + text + '</button>');
+		+ text + '\')">' + text + '</button>');
 }
 </script>
 

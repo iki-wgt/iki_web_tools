@@ -1,13 +1,13 @@
 <style>
 
-#history{
+#navHistory{
 	display:inline-block;
 	vertical-align: text-top;
 	margin-right: 50px;
 	width: 250px;
 }
 
-#predefined{
+#navPredefined{
 	display:inline-block;
 	vertical-align: text-top;
 	//float:right;
@@ -46,10 +46,10 @@
 								array("Change Battery","goto","changebatterypos"),
 							);
 		
-		function buildPredefinedText($savedPositions){
+		function buildPredefinedTextNav($savedPositions){
 			$html = '';
 			foreach ($savedPositions as $pose){
-					$html .= '<div class="historyElement" onclick="execute(\''.$pose[1].'\',\''.$pose[2].'\')">'.$pose[0].'</div>';
+					$html .= '<button class="btn btn-default" onclick="execute(\''.$pose[1].'\',\''.$pose[2].'\')">'.$pose[0].'</button>';
 			}
 			return $html;
 		}
@@ -57,19 +57,27 @@
 
 
 <div id="wrapper" style="padding:100px;">
-	<form id="frm1" action="#">
+	<!--<form id="frm1" action="#">
 	  <input type="text" size="65" name="teststr" onkeypress="keyDetect(event)" class="btn btn-default btn-xlarge">
 	  <input type="button" onclick="SavePosition()" value="Save Position" class="btn btn-default btn-xlarge">
-	</form>
+	</form>-->
 	<div>
-		<div id="history">
+		<div id="navHistory">
 			<h2>Gerade eingegeben:</h2>
 		</div>
-		<div id="predefined">
+		<div id="navPredefined">
 			<h2>Gespeicherte Vorgaben:</h2>
-			<?php echo buildPredefinedText($savedPositions); ?>
+			<?php echo buildPredefinedTextNav($savedPositions); ?>
 		</div>
 	</div>
+	<p class="lead">
+    <div class="input-group">
+      <input type="text" class="form-control" id="navStr" placeholder="Hier bitte den Text eingeben...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="SavePosition()">Speichere aktuelle Position</button>
+      </span>
+    </div>
+  </p>
 </div>
 <script>
 
@@ -81,10 +89,9 @@ function keyDetect( event ){
 }
 
 function SavePosition() {
-    //document.getElementById("frm1").submit();
-    nav_save(document.forms["frm1"]["teststr"].value);
-    onclick="execute(\''.$pose[1].'\',\''.$pose[2].'\')">'.$pose[0].'
-    $("#history").append('<div class="historyElement" onclick="execute(\'goto\',\''+document.forms["frm1"]["teststr"].value+'\',\''+document.forms["frm1"]["teststr"].value+'\')">'+document.forms["frm1"]["teststr"].value+'</div>');
+    var navStr = document.getElementById('navStr').value
+    nav_save(navStr);
+    $("#navHistory").append('<button class="btn btn-default" onclick="nav_goto(\''+navStr+'\')">'+navStr+'</div>');
 }
 </script>
 

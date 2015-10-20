@@ -118,14 +118,9 @@
       <div class="col-sm-8 col-sm-offset-2 text-center">
         <h1>Wohin soll Marvin navigieren?</h1>
         <br>
-		<p class="lead">
-        <div class="input-group">
-      <input type="text" class="form-control" placeholder="Hier bitte den Text eingeben...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Navigiere</button>
-      </span>
+        <?php include 'include/navigation.php';?>
       </div>
-   </div>
+    </div>
 </section>
 
 <section class="container-fluid" id="section4">
