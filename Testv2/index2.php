@@ -75,10 +75,10 @@
                 <a href="#top"  onclick = $("#menu-close").click(); >Marvin</a>
             </li>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="#top" onclick = $("#menu-close").click(); >Start</a>
             </li>
             <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
+                <a href="#sprache" onclick = $("#menu-close").click(); >Sprache</a>
             </li>
             <li>
                 <a href="#services" onclick = $("#menu-close").click(); >Services</a>
@@ -99,7 +99,7 @@
       <div class="row">
           <div class="col-sm-3">
             <div class="row">
-              <a href="#section2"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/talk11.png">
+              <a href="#sprache"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/talk11.png">
               <h1>Sprache</h1></div></a>
             </div>
           </div>
@@ -127,7 +127,7 @@
     </header>
 
     <!-- About -->
-    <section id="about" class="about">
+    <section id="sprache" class="sprache">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text-center">
