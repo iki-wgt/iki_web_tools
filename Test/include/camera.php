@@ -45,7 +45,7 @@
     x = u / w;
     y = v / w;
 
-    return [x, y - 30];   // dirty hack. The origings of our models are at the bottom of the object. This puts the position a little bit more to the center.
+    return [x, y];
   }
 
   function drawObject(object) {
@@ -83,58 +83,48 @@
 
   function objectCallback(message) {
     // clear everything
-    stage.removeAllChildren();
-    elements = [];
+    //stage.removeAllChildren();
+    //elements = [];
     
-    var i;
-    for (i = 0; i < message.objects.length; i++) {
-      if (message.objects[i].type.key != 'table') {
-        console.log('Saw object with key: ' + message.objects[i].type.key);
+    console.log('Saw object ' + message.id)
 
-        if (projectionMatrix.length == 12) {
-          var radius = 30;
+    if(message.operation == 0) {  // add object
+      if (projectionMatrix.length == 12) {  // check if projection matrix has the correct size
+        var radius = 30;
 
-          // get the name of the object
-          var request = new ROSLIB.ServiceRequest({
-            type : {
-              key : message.objects[i].type.key,
-              db : message.objects[i].type.db
-            }
-          });
-
-          var push_name = function(pose, radius, key) {
-            return function(result) {
-              if(typeof invTfTransform != 'undefined') {
-                var pose2 = new ROSLIB.Pose(pose);
-                
-                var transPos = pose2.clone();
-                transPos.applyTransform(tfTransform);
-              } else {
-                console.log('invTfTransform is undefined');
-              }
-
-              element = {
-                name : result.information.name,
-                pos : pose.position,
-                radius : radius,
-                key : key,
-                header : result.header,
-                worldPose : transPos,
-                container : {}
-              }
-
-              elements.push(element);
-
-              drawObject(element);
-            };
-          };
-
-          objectInfoClient.callService(request, push_name(message.objects[i].pose.pose.pose, radius, message.objects[i].type.key));
+        if(typeof invTfTransform != 'undefined') {
+          var pose2 = new ROSLIB.Pose(message.primitive_poses[0]);
           
-        } else {
-          console.log('No valid projection matrix yet!');
+          var transPos = pose2.clone();
+          transPos.applyTransform(tfTransform);
         }
+
+        element = {
+          name : message.id,
+          pos : message.primitive_poses[0].position,
+          radius : radius,
+          key : message.type.key,
+          header : message.header,
+          worldPose : transPos,
+          container : {}
+        }
+
+        elements.push(element);
+
+        drawObject(element);      
+      } else {
+        console.log('No valid projection matrix yet!');
       }
+    } else {
+      // remove object
+      for (var i = elements.length - 1; i >= 0; i--) {
+        if(elements[i].name == message.id) {
+          stage.removeChild(elements[i].container);   // the circle and the text are grouped in this container
+          stage.update();
+          elements.splice(i, 1);  // remove one object at index i
+          break;
+        }
+      };// loop over elements
     }
   }
 
@@ -158,9 +148,9 @@
 
   var objectListener = new ROSLIB.Topic({
     ros : ros,
-    name : 'recognized_object_array',
-    messageType : 'object_recognition_msgs/RecognizedObjectArray',
-    queue_length : 1
+    name : 'collision_object',
+    messageType : 'moveit_msgs/CollisionObject',
+    queue_length : 20
   });
 
   var tfClient = new ROSLIB.TFClient({
