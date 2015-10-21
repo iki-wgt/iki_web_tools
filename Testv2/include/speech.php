@@ -9,8 +9,6 @@
 
 #predefined{
 	display:inline-block;
-	vertical-align: text-top;
-	//float:right;
 	width: 600px;
 }
 
@@ -21,7 +19,6 @@
 	background:#383838; 
 	cursor: pointer; 
 	cursor: hand;
-	font-weight:50px;
 }
 
 .historyElement:hover{
