@@ -4,7 +4,7 @@
 	display:inline-block;
 	vertical-align: text-top;
 	margin-right: 50px;
-	width: 500px;
+	width: 600px;
 	padding-left:10px;
 	padding-right:10px;
 }
@@ -13,7 +13,7 @@
 	display:inline-block;
 	vertical-align: text-top;
 	//float:right;
-	width: 500px;
+	width: 600px;
 	padding-right:10px;
 	padding-left:10px;
 }
