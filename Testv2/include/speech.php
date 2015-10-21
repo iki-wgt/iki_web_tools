@@ -4,14 +4,18 @@
 	display:inline-block;
 	vertical-align: text-top;
 	margin-right: 50px;
-	width: 250px;
+	width: 100%;
+	padding-left:10px;
+	padding-right:10px;
 }
 
 #predefined{
 	display:inline-block;
 	vertical-align: text-top;
 	//float:right;
-	width: 250px;
+	width: 100%px;
+	padding-right:10px;
+	padding-left:10px;
 }
 
 .historyElement{
@@ -69,7 +73,7 @@
 		<div id="history">
 			<h2>Gerade eingegeben:</h2>
 		</div>
-		<div style="width:100%;">
+		<div id="predefined">
         	<h2>Häufig verwendet</h2>
             <br />
 			<?php echo buildPredefinedText($savedTextList); ?>
