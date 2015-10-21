@@ -1,5 +1,6 @@
 html,body {
 	height:100%;
+	width:100%;
     background:center no-repeat scroll url('../img/bg.jpg');
     
 }
