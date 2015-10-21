@@ -69,7 +69,7 @@
 		<div id="history">
 			<h2>Gerade eingegeben:</h2>
 		</div>
-		<div style="width:auto;">
+		<div style="width:auto; padding:5px;">
 			<?php echo buildPredefinedText($savedTextList); ?>
 		</div>
 	</div>
