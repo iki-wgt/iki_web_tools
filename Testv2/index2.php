@@ -2,14 +2,18 @@
 <html lang="en">
 
 <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Robot Control Web UI</title>
+		<meta name="description" content="Robot Control Web UI" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="IKI" />
+		<link rel="shortcut icon" href="../favicon.ico">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Robot Control Web UI</title>
+    <title>Marvin User Interface</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -27,7 +31,37 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
+    <script src="js/modernizr.custom.js"></script>
+		<script src="js/jquery-2.1.3.min.js"></script>
+		
+		<script type="text/javascript" src="js/eventemitter2.js"></script>
+		<script type="text/javascript" src="js/roslib.js"></script>
+		<script type="text/javascript" src="js/three.js"></script>
+		<script type="text/javascript" src="js/ColladaLoader.js"></script>
+		<script type="text/javascript" src="js/STLLoader.js"></script>
+		<script type="text/javascript" src="js/ros3d.js"></script>
+		<script type="text/javascript" src="js/easeljs.js"></script>
+		<script type="text/javascript" src="js/ros2d.js"></script>
+		<script type="text/javascript" src="js/nav2d.js"></script>
+        <script type="text/javascript" src="js/iki_robot.js"></script> <!-- ros has to be defined for this script -->
+        <script type="text/javascript" type="text/javascript">
+			var ros = new ROSLIB.Ros({
+				url : 'ws://192.168.5.2:9090'
+			});
+	
+			ros.on('connection', function() {
+				console.log('Connected to websocket server.');
+			});
+	
+			ros.on('error', function(error) {
+				console.log('Error connecting to websocket server: ', error);
+			});
+	
+			ros.on('close', function() {
+				console.log('Connection to websocket server closed.');
+			});
+  		</script>
 </head>
 
 <body>
@@ -96,12 +130,12 @@
     <section id="about" class="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-                </div>
-            </div>
-            <!-- /.row -->
+                <div class="col-sm-8 col-sm-offset-2 text-center">
+                  <h1>Was soll Marvin sagen?</h1>
+                  <br>
+                  <?php include 'include/speech.php';?>
+	  		</div>
+  </div>
         </div>
         <!-- /.container -->
     </section>
