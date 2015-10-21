@@ -69,9 +69,7 @@
 				console.log('Connection to websocket server closed.');
 			});
 			
-  		</script>
-        
-        
+  		</script> 
 </head>
 
 <body>
@@ -151,7 +149,7 @@
 
     <!-- Navigation -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="navigation" class="navigation bg-primary">
+    <section id="navigation" class="navigation">
         <div class="container">
             <div class="row">
             	<div class="col-sm-8 col-sm-offset-2 text-center">
@@ -169,20 +167,25 @@
             <div class="row">
             	<div class="col-sm-6">
                 	<div class="row">
-                    	<a id="" class="" href="#hand" onclick="execute('gripper','0')">
-                    	<div class="col-sm-12 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
-                        	<h1>Hand öffnen</h1>
+                    	<div class="col-sm-12 col-sm-offset-1 text-center">
+                        	<h1>Wohin soll Marvin navigieren?</h1>
+                    		<br>
+                            <a id="" class="" href="#hand" onclick="execute('gripper','0')">
+                            	<img class="iconCircle" src="img/factory26.png">
+                                <h1>Hand öffnen</h1>
+                            </a>
                         </div>
-                        </a>
+                            
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                 	<div class="row">
-                    <a id="" class="" href="#hand" onclick="execute('gripper','0.7')">
-                    	<div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
-                      		<h1>Hand schlie&szlig;en</h1>
+                    	<div class="col-sm-10 col-sm-offset-1 text-center">
+                        	<a id="" class="" href="#hand" onclick="execute('gripper','0.7')">
+                                <img class="iconCircle" src="img/factory26.png">
+                                <h1>Hand schlie&szlig;en</h1>
+                            </a>
                         </div>
-                    	</a>
                     </div>
                 </div>
       		</div><!--/row-->
