@@ -60,7 +60,7 @@
 				  </span>
    			</div><!-- /input-group -->
     	</p>
-	<div>
+	<div class="row">
 		<div id="history">
 			<h2>Gerade eingegeben:</h2>
 		</div>
