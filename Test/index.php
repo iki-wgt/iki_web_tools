@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 		-->
 	
-		<link rel="stylesheet" type="text/css" href="css/icons.css" />
+		<!--<link rel="stylesheet" type="text/css" href="css/icons.css" />-->
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/iki_robot.css" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
@@ -29,13 +29,13 @@
 		
 		<script type="text/javascript" src="js/eventemitter2.js"></script>
 		<script type="text/javascript" src="js/roslib.js"></script>
-		<script type="text/javascript" src="js/three.js"></script>
+		<!--<script type="text/javascript" src="js/three.js"></script>
 		<script type="text/javascript" src="js/ColladaLoader.js"></script>
 		<script type="text/javascript" src="js/STLLoader.js"></script>
-		<script type="text/javascript" src="js/ros3d.js"></script>
+		<script type="text/javascript" src="js/ros3d.js"></script>-->
 		<script type="text/javascript" src="js/easeljs.js"></script>
-		<script type="text/javascript" src="js/ros2d.js"></script>
-		<script type="text/javascript" src="js/nav2d.js"></script>
+		<!--<script type="text/javascript" src="js/ros2d.js"></script>
+		<script type="text/javascript" src="js/nav2d.js"></script>-->
 
     <script type="text/javascript" type="text/javascript">
   var ros = new ROSLIB.Ros({
