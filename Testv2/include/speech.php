@@ -10,6 +10,7 @@
 #predefined{
 	display:inline-block;
 	width: 600px;
+	margin-right:10px;
 }
 
 .historyElement{
