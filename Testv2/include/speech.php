@@ -1,28 +1,4 @@
-<style>
 
-#history{
-	width: 600px;
-}
-
-#predefined{
-	
-	width: 600px;
-}
-
-.historyElement{
-	border-radius: 25px;
-	margin-top:10px; 
-	padding:20px; 
-	background:#383838; 
-	cursor: pointer; 
-	cursor: hand;
-}
-
-.historyElement:hover{
-	background: #336ca6;
-}
-
-</style>
 
 	<?php
 		ini_set('error_reporting', E_ALL);
