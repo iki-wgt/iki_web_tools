@@ -290,22 +290,22 @@
 </script>
 
 <div>
-<div style="position: absolute; left: 80px" onclick="movePTU('up')">
-  <img src="img/arrow_up.png" />
-</div>
-<div style="position: absolute; top: 80px" onclick="movePTU('left')">
-  <img src="img/arrow_left.png" />
-</div>
-<div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
-  <img src="img/arrow_right.png" />
-</div>
-<div style="position: absolute; top: 80px; left: 80px">
-  <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
-  <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
-</div>
-<div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
-  <img src="img/arrow_down.png" />
-</div>
+  <div style="position: absolute; left: 80px" onclick="movePTU('up')">
+    <img src="img/arrow_up.png" />
+  </div>
+  <div style="position: absolute; top: 80px" onclick="movePTU('left')">
+    <img src="img/arrow_left.png" />
+  </div>
+  <div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
+    <img src="img/arrow_right.png" />
+  </div>
+  <div style="position: absolute; top: 80px; left: 80px">
+    <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
+    <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
+  </div>
+  <div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
+    <img src="img/arrow_down.png" />
+  </div>
 </div>
 
 <div style="position: absolute; top: 640px">
