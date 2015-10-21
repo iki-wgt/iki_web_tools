@@ -307,7 +307,3 @@
   <img src="img/arrow_down.png" />
 </div>
 </div>
-
-<div style="position: absolute; top: 640px">
-  <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
-</div>
