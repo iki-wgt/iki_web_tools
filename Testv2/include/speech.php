@@ -21,7 +21,7 @@
 	background:#383838; 
 	cursor: pointer; 
 	cursor: hand;
-	font-weight:20px;
+	font-weight:50px;
 }
 
 .historyElement:hover{
