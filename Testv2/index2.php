@@ -66,7 +66,7 @@
 
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigationsleiste -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -75,25 +75,25 @@
                 <a href="#top"  onclick = $("#menu-close").click(); >Marvin</a>
             </li>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Start</a>
+                <a href="#start" onclick = $("#menu-close").click(); >Start</a>
             </li>
             <li>
                 <a href="#sprache" onclick = $("#menu-close").click(); >Sprache</a>
             </li>
             <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
+                <a href="#navigation" onclick = $("#menu-close").click(); >Navigation</a>
             </li>
             <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
+                <a href="#hand" onclick = $("#menu-close").click(); >Hand steuern</a>
             </li>
             <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+                <a href="#kamera" onclick = $("#menu-close").click(); >Kamera</a>
             </li>
         </ul>
     </nav>
 
-    <!-- Header -->
-    <header id="top" class="header">
+    <!-- Start -->
+    <header id="start" class="start">
         <div class="text-vertical-center">
             <div class="container-fluid">
       <div class="row">
@@ -105,19 +105,19 @@
           </div>
           <div class="col-sm-3">
             <div class="row">
-              <a href="#section3"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/compass68.png">
+              <a href="#navigation"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/compass68.png">
               <h1>Navigation</h1></div></a>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="row">
-              <a href="#section4"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
+              <a href="#hand"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
               <h1>Hand steuern</h1></div></a>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="row">
-              <a href="#section5"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/security50.png">
+              <a href="#kamera"><div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/security50.png">
               <h1>Kamera</h1></div></a>
             </div>
           </div>
@@ -126,7 +126,7 @@
         </div>
     </header>
 
-    <!-- About -->
+    <!-- Sprache -->
     <section id="sprache" class="sprache">
         <div class="container">
             <div class="row">
@@ -134,81 +134,23 @@
                   <h1>Was soll Marvin sagen?</h1>
                   <br>
                   <?php include 'include/speech.php';?>
-	  		</div>
-  </div>
-        </div>
-        <!-- /.container -->
+	  			</div>
+  			</div>
+        </div> <!-- /.container -->
     </section>
 
-    <!-- Services -->
+    <!-- Navigation -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
+    <section id="navigation" class="navigation bg-primary">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
+            <div class="row">
+            	<div class="col-sm-8 col-sm-offset-2 text-center">
+        	        <h1>Wohin soll Marvin navigieren?</h1>
+                    <br>
+                    <?php include 'include/navigation.php';?>
                 </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
+    		</div>
+        </div>  <!-- /.container -->
     </section>
 
     <!-- Callout -->
@@ -219,7 +161,7 @@
     </aside>
 
     <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
+    <section id="hand" class="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -279,7 +221,7 @@
     </aside>
 
     <!-- Map -->
-    <section id="contact" class="map">
+    <section id="kamera" class="map">
         <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
         <br />
         <small>
@@ -293,12 +235,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
+                    <h4><strong>Marvin</strong>
                     </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <p>Hochschule Ravensburg-Weingarten, 88250 Weingarten, Germany</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:marvin@hs-weingarten.de">marvin@hs-weingarten.de</a>
                         </li>
                     </ul>
                     <br>
@@ -314,7 +256,7 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="text-muted">Copyright &copy; Hochschule Ravensburg-Weingarten 2015</p>
                 </div>
             </div>
         </div>

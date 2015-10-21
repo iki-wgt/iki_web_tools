@@ -251,7 +251,7 @@ hr.small {
 
 /* Header */
 
-.header {
+.start {
     display: table;
     position: relative;
     width: 100%;
@@ -271,7 +271,7 @@ hr.small {
 
 /* Services */
 
-.services {
+.navigation {
     padding: 50px 0;
 }
 
