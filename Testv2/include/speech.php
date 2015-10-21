@@ -13,7 +13,7 @@
 	display:inline-block;
 	vertical-align: text-top;
 	//float:right;
-	width: 100%px;
+	width: 500px;
 	padding-right:10px;
 	padding-left:10px;
 }
@@ -80,6 +80,8 @@
 		</div>
 	</div>
 </div>
+
+
 <script>
 var ttsClient = new ROSLIB.ActionClient({
   ros : ros,
