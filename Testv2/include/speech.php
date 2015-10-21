@@ -49,7 +49,7 @@
 		function buildPredefinedText($savedTextList){
 			$html = '';
 			foreach ($savedTextList as $text){
-				  $html .= '<button class="btn btn-default btn-lg" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
+				  $html .= '<button style="padding:5px;" class="btn btn-default btn-lg" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
 			}
 			return $html;
 		}
@@ -69,7 +69,7 @@
 		<div id="history">
 			<h2>Gerade eingegeben:</h2>
 		</div>
-		<div style="width:auto; padding:5px;">
+		<div style="width:100%;">
 			<?php echo buildPredefinedText($savedTextList); ?>
 		</div>
 	</div>
