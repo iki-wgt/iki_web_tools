@@ -1,12 +1,12 @@
 <style>
 
 #history{
-	width: 600px;
+	width: 100%;
 }
 
 #predefined{
 	
-	width: 600px;
+	width: 100%;
 }
 
 .historyElement{
