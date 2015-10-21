@@ -62,52 +62,6 @@
 				console.log('Connection to websocket server closed.');
 			});
   		</script>
-        
-        <script type="text/javascript" type="text/javascript">
-			var ros = new ROSLIB.Ros({
-				url : 'ws://192.168.5.2:9090'
-			});
-			var ttsClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'TTS',
-				actionName : 'cerevoice_tts_msgs/TtsAction'
-			});
-
-			var navClient = new ROSLIB.ActionClient({
-					ros : ros,
-					serverName : 'navigation_position_db_server/goto_position',
-					actionName : 'marvin_navigation_tools/GotoPositionAction'
-			});
-
-			var navSaveClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'navigation_position_db_server/save_position',
-				actionName : 'marvin_navigation_tools/SavePositionAction'
-			});
-
-			var gripperClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'jaco_arm_driver/gripper_action',
-				actionName : 'control_msgs/GripperCommandAction'
-			});
-
-			var manipulationClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'arm_posture_action_server/goto_arm_posture',
-				actionName : 'marvin_manipulation/GotoArmPostureAction'
-			});
-
-			var manipulationSaveClient = new ROSLIB.ActionClient({
-				ros : ros,
-				serverName : 'arm_posture_action_server/save_arm_posture',
-				actionName : 'marvin_manipulation/SaveArmPostureAction'
-			});
-			var octomapClient = new ROSLIB.Service({
-		       ros : ros,
-		       name : 'clear_octomap',
-		       serviceType : 'std_srvs/Empty'
-			});
-		 </script>
 </head>
 
 <body>
