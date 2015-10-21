@@ -5,8 +5,6 @@
 	vertical-align: text-top;
 	margin-right: 50px;
 	width: 600px;
-	padding-left:10px;
-	padding-right:10px;
 }
 
 #predefined{
@@ -14,8 +12,6 @@
 	vertical-align: text-top;
 	//float:right;
 	width: 600px;
-	padding-right:10px;
-	padding-left:10px;
 }
 
 .historyElement{
@@ -25,6 +21,7 @@
 	background:#383838; 
 	cursor: pointer; 
 	cursor: hand;
+	font-weight:20px;
 }
 
 .historyElement:hover{
