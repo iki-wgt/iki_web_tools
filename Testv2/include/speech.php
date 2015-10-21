@@ -70,7 +70,8 @@
 			<h2>Gerade eingegeben:</h2>
 		</div>
 		<div style="width:100%;">
-        	Zuletzt eingegeben:
+        	<h2>Häufig verwendet</h2>
+            <br />
 			<?php echo buildPredefinedText($savedTextList); ?>
 		</div>
 	</div>
