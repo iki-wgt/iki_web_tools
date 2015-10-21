@@ -204,17 +204,21 @@
         <div class="container">
             <div class="row">
             	<div class="col-sm-6">
-                	<div class="row" onclick="gripper_control(0.0)">
+                	<div class="row">
+                    	<a id="" class="" href="" onclick="execute('gripper','0')">
                     	<div class="col-sm-12 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
-                      		<a id="" class="" href="#" onclick="execute('gripper','0')"><h1>Hand öffnen</h1></a>
+                        	<h1>Hand öffnen</h1>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-5">
-                	<div class="row" onclick="gripper_control(0.7)">
+                	<div class="row">
+                    <a id="" class="" href="#" onclick="execute('gripper','0.7')">
                     	<div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
                       		<h1>Hand schlie&szlig;en</h1>
                         </div>
+                    	</a>
                     </div>
                 </div>
       		</div><!--/row-->
