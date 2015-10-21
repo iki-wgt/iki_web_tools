@@ -9,6 +9,18 @@ body {
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+a {
+	color:#FB6715;text-decoration:none
+}
+
+a:focus,a:hover { 
+	color:#FB6715;text-decoration:underline
+}
+
+a:focus { 
+	outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px
+}
+
 .text-vertical-center {
     display: table-cell;
     text-align: center;
