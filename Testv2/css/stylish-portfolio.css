@@ -22,12 +22,14 @@ body {
     vertical-align: middle;
 }
 
+/* h1 is already defined in styles.css
 .text-vertical-center h1 {
     margin: 0;
     padding: 0;
     font-size: 4.5em;
     font-weight: 700;
 }
+*/
 
 /* Custom Button Styles */
 
