@@ -49,6 +49,13 @@
 			var ros = new ROSLIB.Ros({
 				url : 'ws://192.168.5.2:9090'
 			});
+			
+			
+			var gripperClient = new ROSLIB.ActionClient({
+				ros : ros,
+				serverName : 'jaco_arm_driver/gripper_action',
+				actionName : 'control_msgs/GripperCommandAction'
+			});
 	
 			ros.on('connection', function() {
 				console.log('Connected to websocket server.');
@@ -61,7 +68,10 @@
 			ros.on('close', function() {
 				console.log('Connection to websocket server closed.');
 			});
+			
   		</script>
+        
+        
 </head>
 
 <body>
