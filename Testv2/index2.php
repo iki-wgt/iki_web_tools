@@ -174,11 +174,10 @@
                             	<img class="iconCircle" src="img/factory26.png">
                                 <h1>Hand öffnen</h1>
                             </a>
-                        </div>
-                            
+                        </div>  
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                 	<div class="row">
                     	<div class="col-sm-10 col-sm-offset-1 text-center">
                         	<a id="" class="" href="#hand" onclick="execute('gripper','0.7')">
