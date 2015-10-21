@@ -14,6 +14,13 @@
 	width: 250px;
 }
 
+#stop{
+	display:inline-block;
+	vertical-align: text-top;
+	//float:right;
+	width: 250px;
+}
+
 .historyElement{
 	border-radius: 25px;
 	margin-top:10px; 
@@ -56,7 +63,7 @@
 	?>
 
 
-<div id="wrapper" style="padding:100px;">
+<div id="wrapper" style="padding:10px;">
 	<div>
 		<div id="navHistory">
 			<h2>Gerade eingegeben:</h2>
@@ -64,6 +71,12 @@
 		<div id="navPredefined">
 			<h2>Gespeicherte Vorgaben:</h2>
 			<?php echo buildPredefinedTextNav($savedPositions); ?>
+		</div>
+		<div id="stop">
+			<button class="btn btn-default btn-lg" type="button" onclick="navClient.cancel()">Stop</button>
+			<button class="btn btn-default btn-lg" type="button" onclick="resetSM()">Reset State Machine</button>
+			<button class="btn btn-default btn-lg" type="button" onclick="stopJaco()">Stop Jaco</button>
+			<button class="btn btn-default btn-lg" type="button" onclick="startJaco()">Start Jaco</button>
 		</div>
 	</div>
 	<p class="lead">

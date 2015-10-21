@@ -157,6 +157,41 @@ scrollListener.subscribe(function(message) {
 	console.log('Received scroll destination: ' + message.data);
 	document.getElementById(message.data).scrollIntoView();
 });
+
+var smReset = new ROSLIB.Topic({
+    ros : ros,
+    name : '/marvin/sm_reset',
+    messageType : 'std_msgs/Empty'
+  });
+
+function resetSM() {
+	var msg = new ROSLIB.Message({});
+	smReset.publish(msg);
+}
+
+var stopJacoClient = new ROSLIB.Service({
+    ros : ros,
+    name : '/marvin/jaco_arm_driver/in/stop',
+    serviceType : 'kinova_msgs/Stop'
+  });
+
+function stopJaco() {
+	stopJacoClient.callService(new ROSLIB.ServiceRequest({}), function(result) {
+		console.log('Result from stopping Jaco: ' + result.stop_result);
+	});
+}
+
+var startJacoClient = new ROSLIB.Service({
+    ros : ros,
+    name : '/marvin/jaco_arm_driver/in/start',
+    serviceType : 'kinova_msgs/Start'
+  });
+
+function startJaco() {
+	startJacoClient.callService(new ROSLIB.ServiceRequest({}), function(result) {
+		console.log('Result from starting Jaco: ' + result.start_result);
+	});
+}
 	
 /*
 function notused(){
