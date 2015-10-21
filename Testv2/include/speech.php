@@ -1,16 +1,12 @@
 <style>
 
 #history{
-	display:inline-block;
-	vertical-align: text-top;
-	margin-right: 50px;
 	width: 600px;
 }
 
 #predefined{
-	display:inline-block;
+	
 	width: 600px;
-	margin-right:10px;
 }
 
 .historyElement{
