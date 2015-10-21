@@ -165,11 +165,9 @@
     <section id="hand" class="hand">
         <div class="container">
             <div class="row">
-            	<div class="col-sm-5">
+            	<div class="col-sm-6">
                 	<div class="row">
                     	<div class="col-sm-12 col-sm-offset-1 text-center">
-                        	<h1>Wohin soll Marvin navigieren?</h1>
-                    		<br>
                             <a id="" class="" href="#hand" onclick="execute('gripper','0')">
                             	<img class="iconCircle" src="img/factory26.png">
                                 <h1>Hand öffnen</h1>
