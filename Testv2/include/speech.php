@@ -4,7 +4,7 @@
 	display:inline-block;
 	vertical-align: text-top;
 	margin-right: 50px;
-	width: 100%;
+	width: 1000px;
 	padding-left:10px;
 	padding-right:10px;
 }
@@ -53,7 +53,7 @@
 		function buildPredefinedText($savedTextList){
 			$html = '';
 			foreach ($savedTextList as $text){
-				  $html .= '<button style="padding:5px;" class="btn btn-default btn-lg" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
+				  $html .= '<button class="btn btn-default btn-lg" onclick="say(\''.$text.'\')" type="button">'.$text.'</button>';
 			}
 			return $html;
 		}
