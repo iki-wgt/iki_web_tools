@@ -60,15 +60,17 @@
 				  </span>
    			</div><!-- /input-group -->
     	</p>
-	<div class="row">
-		<div id="history">
-			<h2>Gerade eingegeben:</h2>
-		</div>
-		<div id="predefined">
-        	<h2>Häufig verwendet</h2>
-            <br />
-			<?php echo buildPredefinedText($savedTextList); ?>
-		</div>
+	<div class="container">
+    	<div class="row">
+            <div id="history">
+                <h2>Gerade eingegeben:</h2>
+            </div>
+            <div id="predefined">
+                <h2>Häufig verwendet</h2>
+                <br />
+                <?php echo buildPredefinedText($savedTextList); ?>
+            </div>
+        </div>
 	</div>
 </div>
 
