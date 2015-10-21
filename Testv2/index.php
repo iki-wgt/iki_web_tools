@@ -38,23 +38,28 @@
 		<script type="text/javascript" src="js/nav2d.js"></script>
 
     <script type="text/javascript" type="text/javascript">
-  var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.5.2:9090'
-  });
-
-  ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-  });
-
-  ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-  });
-
-  ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-  });
-
-  </script>
+		  var ros = new ROSLIB.Ros({
+			url : 'ws://192.168.5.2:9090'
+		  });
+		  
+		  var gripperClient = new ROSLIB.ActionClient({
+						ros : ros,
+						serverName : 'jaco_arm_driver/gripper_action',
+						actionName : 'control_msgs/GripperCommandAction'
+					});
+		
+		  ros.on('connection', function() {
+			console.log('Connected to websocket server.');
+		  });
+		
+		  ros.on('error', function(error) {
+			console.log('Error connecting to websocket server: ', error);
+		  });
+		
+		  ros.on('close', function() {
+			console.log('Connection to websocket server closed.');
+		  });	
+  	</script>
 
   <script type="text/javascript" src="js/iki_robot.js"></script> <!-- ros has to be defined for this script -->
 
@@ -125,19 +130,27 @@
 
 <section class="container-fluid" id="section4">
     <div class="row">
-          <div class="col-sm-6">
-            <div class="row" onclick="gripper_control(0.0)">
-              <div class="col-sm-12 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
-              <h1>Hand öffnen</h1></div>
-            </div>
-          </div>
-          <div class="col-sm-5">
-            <div class="row" onclick="gripper_control(0.7)">
-              <div class="col-sm-10 col-sm-offset-1 text-center"><img class="iconCircle" src="img/factory26.png">
-              <h1>Hand schlie&szlig;en</h1></div>
-            </div>
-          </div>
-      </div><!--/row-->
+            	<div class="col-sm-6">
+                	<div class="row">
+                    	<a id="" class="" href="#hand" onclick="execute('gripper','0')">
+                    		<div class="col-sm-12 col-sm-offset-1 text-center">
+                              	<img class="iconCircle" src="img/factory26.png">
+                                <h1>Hand öffnen</h1>
+                        	</div>  
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                	<div class="row">
+                    	<a id="" class="" href="#hand" onclick="execute('gripper','0.7')">
+                    		<div class="col-sm-10 col-sm-offset-1 text-center">
+                                <img class="iconCircle" src="img/factory26.png">
+                                <h1>Hand schlie&szlig;en</h1>
+                        	</div>
+                        </a>
+                    </div>
+                </div>
+      		</div><!--/row-->
 </section>
 
 <section class="container-fluid" id="section5">

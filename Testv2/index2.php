@@ -50,7 +50,6 @@
 				url : 'ws://192.168.5.2:9090'
 			});
 			
-			
 			var gripperClient = new ROSLIB.ActionClient({
 				ros : ros,
 				serverName : 'jaco_arm_driver/gripper_action',
