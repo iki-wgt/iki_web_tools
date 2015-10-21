@@ -8,13 +8,37 @@
           border-radius: 18px;
   }
 </style>
-<script type="text/javascript" type="text/javascript">
+
+<div>
+  <div style="position: absolute; left: 80px" onclick="movePTU('up')">
+    <img src="img/arrow_up.png" />
+  </div>
+  <div style="position: absolute; top: 80px" onclick="movePTU('left')">
+    <img src="img/arrow_left.png" />
+  </div>
+  <div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
+    <img src="img/arrow_right.png" />
+  </div>
+  <div style="position: absolute; top: 80px; left: 80px">
+    <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
+    <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
+  </div>
+  <div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
+    <img src="img/arrow_down.png" />
+  </div>
+</div>
+
+<div style="position: absolute; top: 640px">
+  <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
+</div>
+
+<script type="text/javascript">
   var projectionMatrix = [];
-  var stage = new createjs.Stage("myCanvas");
+  var stage = new createjs.Stage('myCanvas');
   var elements = [];
 
-	function projectPoint(point, projMatrix) {	// projMatrix is a 12 element vector representing the 3x4 matrix, point is of type geometry_msgs/Point
-		u = projMatrix[0] * point.x + projMatrix[1] * point.y + projMatrix[2] * point.z + projMatrix[3];
+  function projectPoint(point, projMatrix) {  // projMatrix is a 12 element vector representing the 3x4 matrix, point is of type geometry_msgs/Point
+    u = projMatrix[0] * point.x + projMatrix[1] * point.y + projMatrix[2] * point.z + projMatrix[3];
     v = projMatrix[4] * point.x + projMatrix[5] * point.y + projMatrix[6] * point.z + projMatrix[7];
     w = projMatrix[8] * point.x + projMatrix[9] * point.y + projMatrix[10] * point.z + projMatrix[11];
 
@@ -22,7 +46,7 @@
     y = v / w;
 
     return [x, y - 30];   // dirty hack. The origings of our models are at the bottom of the object. This puts the position a little bit more to the center.
-	}
+  }
 
   function drawObject(object) {
     var handleClick = function(element) {
@@ -85,6 +109,8 @@
                 
                 var transPos = pose2.clone();
                 transPos.applyTransform(tfTransform);
+              } else {
+                console.log('invTfTransform is undefined');
               }
 
               element = {
@@ -142,13 +168,13 @@
     angularThres : 0.01,
     transThres : 0.01,
     rate : 10.0,
-    fixedFrame: 'odom_combined',
+    fixedFrame: 'map',
     serverName : 'tf2_web_republisher'
   });
 
   var tfTransform, invTfTransform;
   tfClient.subscribe('camera_rgb_optical_frame', function(transformMsg) {
-
+    console.log('in tf callback');
     tfTransform = new ROSLIB.Transform(transformMsg);
     
     // from InteractiveMarkerHandle.js
@@ -174,7 +200,7 @@
   })
 
   cameraInfoListener.subscribe(function(message) {
-  	projectionMatrix = message.P;
+    projectionMatrix = message.P;
     console.log('Received message on ' + cameraInfoListener.name + ': ' + projectionMatrix);
     cameraInfoListener.unsubscribe();
     
@@ -188,7 +214,7 @@
       serverName : 'recognize_objects',
       actionName : 'object_recognition_msgs/ObjectRecognitionAction'
     });
-    console.log('clicked button');
+    
     var goal = new ROSLIB.Goal({
       actionClient : orClient,
       goalMessage : {
@@ -198,7 +224,7 @@
     });
 
     goal.on('result', function(result) {
-      console.log('Final Result: ');
+      console.log('Final Result: ' + result);
     });
 
     goal.send();
@@ -288,26 +314,3 @@
     })
   }
 </script>
-
-<div>
-  <div style="position: absolute; left: 80px" onclick="movePTU('up')">
-    <img src="img/arrow_up.png" />
-  </div>
-  <div style="position: absolute; top: 80px" onclick="movePTU('left')">
-    <img src="img/arrow_left.png" />
-  </div>
-  <div style="position: absolute; top: 80px; left: 720px" onclick="movePTU('right')">
-    <img src="img/arrow_right.png" />
-  </div>
-  <div style="position: absolute; top: 80px; left: 80px">
-    <div style="position: absolute; z-index:100"><img src="http://192.168.5.2:8080/stream?topic=camera/rgb/image_rect_color&type=mjpeg"></img></div>
-    <div style="position: absolute; z-index:5000" id="canvasDiv"><canvas id="myCanvas" width="640" height="480"></canvas></div>
-  </div>
-  <div style="position: absolute; top: 560px; left: 80px" onclick="movePTU('down')">
-    <img src="img/arrow_down.png" />
-  </div>
-</div>
-
-<div style="position: absolute; top: 640px">
-  <button class="btn btn-default btn-xlarge" role="submit" onclick="detectObjects()">Objekte erkennen</button>
-</div>

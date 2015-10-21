@@ -148,7 +148,6 @@
 
   var tfTransform, invTfTransform;
   tfClient.subscribe('camera_rgb_optical_frame', function(transformMsg) {
-
     tfTransform = new ROSLIB.Transform(transformMsg);
     
     // from InteractiveMarkerHandle.js
