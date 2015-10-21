@@ -70,7 +70,6 @@
 			<h2>Gerade eingegeben:</h2>
 		</div>
 		<div id="predefined">
-			<h2>Gespeicherte Vorgaben: TODO: Layout</h2>
 			<?php echo buildPredefinedText($savedTextList); ?>
 		</div>
 	</div>
