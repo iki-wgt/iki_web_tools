@@ -1,28 +1,27 @@
-
 function ajaxload(content){
-	if (typeof objectListener != 'undefined') {
+	if (typeof objectListener !== 'undefined') {
 		objectListener.unsubscribe();
 	}
-	$("#content").load("include/"+content+".php");
+	$('#content').load('include/'+content+'.php');
 }
 
 function execute(task, data){
-	if (task == "ajax"){
+	if (task === 'ajax'){
 		ajaxload(data);
 	}
-	else if (task == "say"){
+	else if (task === 'say'){
 		say(data);
 	}
-	else if (task == "goto"){
+	else if (task === 'goto'){
 		nav_goto(data);
 	}
-	else if (task == "gripper"){
+	else if (task === 'gripper'){
 		gripper_control(data);
 	}
-	else if (task == "manip"){
+	else if (task === 'manip'){
 		manipulation_control(data);
 	}
-	else if (task == "clear_oct"){
+	else if (task === 'clear_oct'){
 		clear_octomap();
 	}
 }
