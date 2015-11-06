@@ -120,7 +120,9 @@ function manipulation_control(position_goal){
 	});
 	
 	goal.on('result', function(result) {
-		console.log('finished');
+		if(!result) {
+			alert('Moving arm to position\'' + position_goal + '\' failed!');
+		}
 	});
 	goal.send();
 }
